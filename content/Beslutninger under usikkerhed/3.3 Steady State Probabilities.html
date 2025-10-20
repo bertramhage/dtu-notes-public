@@ -1,0 +1,2713 @@
+<!doctype html>
+<html>
+    <head>
+        <title>3.3 Steady State Probabilities</title>
+        <meta charset='utf-8'/>
+        <style>
+ .ͼ1.cm-focused {outline: 1px dotted #212121;}
+.ͼ1 {position: relative !important; box-sizing: border-box; display: flex !important; flex-direction: column;}
+.ͼ1 .cm-scroller {display: flex !important; align-items: flex-start !important; font-family: monospace; line-height: 1.4; height: 100%; overflow-x: auto; position: relative; z-index: 0;}
+.ͼ1 .cm-content[contenteditable=true] {-webkit-user-modify: read-write-plaintext-only;}
+.ͼ1 .cm-content {margin: 0; flex-grow: 2; flex-shrink: 0; display: block; white-space: pre; word-wrap: normal; box-sizing: border-box; min-height: 100%; padding: 4px 0; outline: none;}
+.ͼ1 .cm-lineWrapping {white-space: pre-wrap; white-space: break-spaces; word-break: break-word; overflow-wrap: anywhere; flex-shrink: 1;}
+.ͼ2 .cm-content {caret-color: black;}
+.ͼ3 .cm-content {caret-color: white;}
+.ͼ1 .cm-line {display: block; padding: 0 2px 0 6px;}
+.ͼ1 .cm-layer > * {position: absolute;}
+.ͼ1 .cm-layer {position: absolute; left: 0; top: 0; contain: size style;}
+.ͼ2 .cm-selectionBackground {background: #d9d9d9;}
+.ͼ3 .cm-selectionBackground {background: #222;}
+.ͼ2.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #d7d4f0;}
+.ͼ3.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #233;}
+.ͼ1 .cm-cursorLayer {pointer-events: none;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer {animation: steps(1) cm-blink 1.2s infinite;}
+@keyframes cm-blink {50% {opacity: 0;}}
+@keyframes cm-blink2 {50% {opacity: 0;}}
+.ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {border-left: 1.2px solid black; margin-left: -0.6px; pointer-events: none;}
+.ͼ1 .cm-cursor {display: none;}
+.ͼ3 .cm-cursor {border-left-color: #444;}
+.ͼ1 .cm-dropCursor {position: absolute;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer .cm-cursor {display: block;}
+.ͼ1 .cm-iso {unicode-bidi: isolate;}
+.ͼ1 .cm-announced {position: fixed; top: -10000px;}
+@media print {.ͼ1 .cm-announced {display: none;}}
+.ͼ2 .cm-activeLine {background-color: #cceeff44;}
+.ͼ3 .cm-activeLine {background-color: #99eeff33;}
+.ͼ2 .cm-specialChar {color: red;}
+.ͼ3 .cm-specialChar {color: #f78;}
+.ͼ1 .cm-gutters {flex-shrink: 0; display: flex; height: 100%; box-sizing: border-box; inset-inline-start: 0; z-index: 200;}
+.ͼ2 .cm-gutters {background-color: #f5f5f5; color: #6c6c6c; border-right: 1px solid #ddd;}
+.ͼ3 .cm-gutters {background-color: #333338; color: #ccc;}
+.ͼ1 .cm-gutter {display: flex !important; flex-direction: column; flex-shrink: 0; box-sizing: border-box; min-height: 100%; overflow: hidden;}
+.ͼ1 .cm-gutterElement {box-sizing: border-box;}
+.ͼ1 .cm-lineNumbers .cm-gutterElement {padding: 0 3px 0 5px; min-width: 20px; text-align: right; white-space: nowrap;}
+.ͼ2 .cm-activeLineGutter {background-color: #e2f2ff;}
+.ͼ3 .cm-activeLineGutter {background-color: #222227;}
+.ͼ1 .cm-panels {box-sizing: border-box; position: sticky; left: 0; right: 0;}
+.ͼ2 .cm-panels {background-color: #f5f5f5; color: black;}
+.ͼ2 .cm-panels-top {border-bottom: 1px solid #ddd;}
+.ͼ2 .cm-panels-bottom {border-top: 1px solid #ddd;}
+.ͼ3 .cm-panels {background-color: #333338; color: white;}
+.ͼ1 .cm-tab {display: inline-block; overflow: hidden; vertical-align: bottom;}
+.ͼ1 .cm-widgetBuffer {vertical-align: text-top; height: 1em; width: 0; display: inline;}
+.ͼ1 .cm-placeholder {color: #888; display: inline-block; vertical-align: top;}
+.ͼ1 .cm-highlightSpace:before {content: attr(data-display); position: absolute; pointer-events: none; color: #888;}
+.ͼ1 .cm-highlightTab {background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20"><path stroke="%23888" stroke-width="1" fill="none" d="M1 10H196L190 5M190 15L196 10M197 4L197 16"/></svg>'); background-size: auto 100%; background-position: right 90%; background-repeat: no-repeat;}
+.ͼ1 .cm-trailingSpace {background-color: #ff332255;}
+.ͼ1 .cm-button {vertical-align: middle; color: inherit; font-size: 70%; padding: .2em 1em; border-radius: 1px;}
+.ͼ2 .cm-button:active {background-image: linear-gradient(#b4b4b4, #d0d3d6);}
+.ͼ2 .cm-button {background-image: linear-gradient(#eff1f5, #d9d9df); border: 1px solid #888;}
+.ͼ3 .cm-button:active {background-image: linear-gradient(#111, #333);}
+.ͼ3 .cm-button {background-image: linear-gradient(#393939, #111); border: 1px solid #888;}
+.ͼ1 .cm-textfield {vertical-align: middle; color: inherit; font-size: 70%; border: 1px solid silver; padding: .2em .5em;}
+.ͼ2 .cm-textfield {background-color: white;}
+.ͼ3 .cm-textfield {border: 1px solid #555; background-color: inherit;}
+.ͼ1 .cm-foldPlaceholder {background-color: #eee; border: 1px solid #ddd; color: #888; border-radius: .2em; margin: 0 1px; padding: 0 1px; cursor: pointer;}
+.ͼ1 .cm-foldGutter span {padding: 0 1px; cursor: pointer;}
+.ͼ1 .cm-tooltip.cm-tooltip-cursor .cm-tooltip-arrow:before {border-top-color: var(--background-modifier-border-hover);}
+.ͼ1 .cm-tooltip.cm-tooltip-cursor .cm-tooltip-arrow:after {border-top-color: var(--background-secondary);}
+.ͼ1 .cm-tooltip.cm-tooltip-cursor p {margin: 0px;}
+.ͼ1 .cm-tooltip.cm-tooltip-cursor mjx-container {padding: 2px !important;}
+.ͼ1 .cm-tooltip.cm-tooltip-cursor {background-color: var(--background-secondary); color: var(--text-normal); border: 1px solid var(--background-modifier-border-hover); padding: 4px 6px; border-radius: 6px;}
+.ͼ1 .cm-tooltip {z-index: 100; box-sizing: border-box;}
+.ͼ2 .cm-tooltip {border: 1px solid #bbb; background-color: #f5f5f5;}
+.ͼ2 .cm-tooltip-section:not(:first-child) {border-top: 1px solid #bbb;}
+.ͼ3 .cm-tooltip {background-color: #333338; color: white;}
+.ͼ1 .cm-tooltip-arrow:before, .ͼ1 .cm-tooltip-arrow:after {content: ''; position: absolute; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent;}
+.ͼ1 .cm-tooltip-above .cm-tooltip-arrow:before {border-top: 7px solid #bbb;}
+.ͼ1 .cm-tooltip-above .cm-tooltip-arrow:after {border-top: 7px solid #f5f5f5; bottom: 1px;}
+.ͼ1 .cm-tooltip-above .cm-tooltip-arrow {bottom: -7px;}
+.ͼ1 .cm-tooltip-below .cm-tooltip-arrow:before {border-bottom: 7px solid #bbb;}
+.ͼ1 .cm-tooltip-below .cm-tooltip-arrow:after {border-bottom: 7px solid #f5f5f5; top: 1px;}
+.ͼ1 .cm-tooltip-below .cm-tooltip-arrow {top: -7px;}
+.ͼ1 .cm-tooltip-arrow {height: 7px; width: 14px; position: absolute; z-index: -1; overflow: hidden;}
+.ͼ3 .cm-tooltip .cm-tooltip-arrow:before {border-top-color: #333338; border-bottom-color: #333338;}
+.ͼ3 .cm-tooltip .cm-tooltip-arrow:after {border-top-color: transparent; border-bottom-color: transparent;}
+ /* Settings panel */
+
+.setting-item.hidden {
+    display: none;
+}
+
+.setting-item.setting-item-heading .latex-suite-settings-icon {
+    margin-right: var(--size-4-2);
+    display: inline-flex;
+}
+
+.setting-item.setting-item-heading:has(.latex-suite-settings-icon) {
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.setting-item.setting-item-heading:has(.latex-suite-settings-icon) + .setting-item {
+    border-top: none;
+}
+
+.setting-item.setting-item-heading:has(.latex-suite-settings-icon) ~ .setting-item:not(.setting-item-heading), .latex-suite-snippet-variables-setting + .setting-item-control {
+    width: calc(100% - 26px);
+    margin-left: 26px;
+}
+
+.latex-suite-snippet-variables-setting .setting-item-control {
+    height: 120px;
+}
+
+.latex-suite-snippet-variables-setting .setting-item-control textarea {
+    width: 100%;
+    height: 100%;
+}
+
+.snippets-text-area, .latex-suite-snippet-variables-setting {
+    display: inline-block;
+}
+
+.snippets-text-area .setting-item-info, .latex-suite-snippet-variables-setting .setting-item-info {
+    margin-bottom: 0.75rem;
+}
+
+.snippets-text-area .setting-item-control {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.snippets-editor-wrapper {
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.snippets-editor-wrapper .cm-editor {
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    font-size: var(--font-inputs);
+    height: 20em;
+    outline: none !important;
+    text-align: left;
+}
+
+.snippets-editor-wrapper .cm-line, .snippets-editor-wrapper .cm-lineNumbers {
+    font-family: var(--font-monospace);
+}
+
+.snippets-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snippets-editor-validity {
+    display: flex;
+    align-items: center;
+}
+
+.snippets-editor-validity-indicator {
+    color: white;
+    display: inline-block;
+    border-radius: 1em;
+    margin-right: 10px;
+    cursor: default;
+    visibility: hidden;
+}
+
+.snippets-editor-validity-indicator svg {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.snippets-editor-validity-indicator:hover {
+    color: white;
+}
+
+.snippets-editor-validity-indicator.valid {
+    background-color: #7dc535;
+    visibility: visible;
+}
+
+.theme-dark .snippets-editor-validity-indicator.valid {
+    background-color: #588b24;
+}
+
+.snippets-editor-validity-indicator.invalid {
+    background-color: #ea5555;
+    visibility: visible;
+}
+
+.snippets-editor-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.latex-suite-confirmation-modal .setting-item {
+    border: none;
+}
+
+
+/*
+Snippet color classes.
+*/
+
+/* These extra selectors enforce their color on all children, because CodeMirror does weird nesting of spans when
+nesting multiple decorations. */
+
+.latex-suite-snippet-placeholder {
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+}
+
+.latex-suite-snippet-placeholder-0, span.latex-suite-snippet-placeholder-0 span {
+    border-color: lightskyblue;
+}
+
+.latex-suite-snippet-placeholder-1, span.latex-suite-snippet-placeholder-1 span {
+    border-color: orange;
+}
+
+.latex-suite-snippet-placeholder-2, span.latex-suite-snippet-placeholder-2 span {
+    border-color: lime;
+}
+
+.latex-suite-snippet-placeholder-3, span.latex-suite-snippet-placeholder-3 span {
+    border-color: pink;
+}
+
+.latex-suite-snippet-placeholder-4, span.latex-suite-snippet-placeholder-4 span {
+    border-color: cornsilk;
+}
+
+.latex-suite-snippet-placeholder-5, span.latex-suite-snippet-placeholder-5 span {
+    border-color: magenta;
+}
+
+.latex-suite-snippet-placeholder-6, span.latex-suite-snippet-placeholder-6 span {
+    border-color: navajowhite;
+}
+
+
+/* Conceal */
+
+span.cm-math.cm-concealed-bold {
+    font-weight: bold;
+}
+
+span.cm-math.cm-concealed-underline {
+    text-decoration: underline;
+}
+
+span.cm-math.cm-concealed-mathrm, sub.cm-math.cm-concealed-mathrm {
+    font-style: normal;
+}
+
+
+/* Conceal superscripts without changing line height */
+sup.cm-math {
+    line-height: 0;
+}
+
+sup.cm-math, sub.cm-math {
+    font-style: italic;
+}
+
+
+/* Inline math tooltip styling */
+
+.theme-light .cm-tooltip.cm-tooltip-cursor {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.028), 0px 3.4px 6.7px rgba(0, 0, 0, .042), 0px 5px 20px rgba(0, 0, 0, .07);
+}
+
+.theme-dark .cm-tooltip.cm-tooltip-cursor {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
+    0px 3.4px 6.7px rgba(0, 0, 0, 0.15),
+    0px 0px 30px rgba(0, 0, 0, 0.27);
+}
+
+
+/* Highlight brackets */
+.theme-light .latex-suite-highlighted-bracket, .theme-light .latex-suite-highlighted-bracket [class^="latex-suite-color-bracket-"] {
+    background-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l), 0.25);
+}
+
+.theme-dark .latex-suite-highlighted-bracket, .theme-dark .latex-suite-highlighted-bracket [class^="latex-suite-color-bracket-"] {
+    background-color: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 7%), 0.3);
+}
+
+
+/* Color matching brackets */
+
+.theme-light .latex-suite-color-bracket-0, .theme-light .latex-suite-color-bracket-0 .cm-bracket {
+    color: #527aff;
+}
+
+.theme-dark .latex-suite-color-bracket-0, .theme-dark .latex-suite-color-bracket-0 .cm-bracket {
+    color: #47b8ff;
+}
+
+.theme-light .latex-suite-color-bracket-1, .theme-light .latex-suite-color-bracket-1 .cm-bracket {
+    color: #ff50b7;
+}
+
+.theme-dark .latex-suite-color-bracket-1, .theme-dark .latex-suite-color-bracket-1 .cm-bracket {
+    color: #ff55cd;
+}
+
+.theme-light .latex-suite-color-bracket-2, .theme-light .latex-suite-color-bracket-2 .cm-bracket {
+    color: #69ba00;
+}
+
+.theme-dark .latex-suite-color-bracket-2, .theme-dark .latex-suite-color-bracket-2 .cm-bracket {
+    color: #73ff63;
+}
+
+/* .latex-suite-color-bracket-3 {
+    color: #8de15c;
+} */
+ .text-snippets-cursor > * > textarea, .text-snippets-tabstops > * > textarea, .text-snippets-newline > * > textarea, .text-snippets-delimiter > * > textarea{
+  height: 30px;
+  padding-top: 2px;
+  padding-bottom: 0;
+}
+
+.text-snippets-class > * > textarea{
+  width:40em;
+  height: 100%;
+}
+
+.text-snippets-class > div > div {
+}
+
+.text-snippets-class > * {
+  height: 100%;
+  width: 60em;
+}
+
+.text-snippets-class {
+  height: 70%;
+  background-color: 
+}
+ 
+.pandoc-plugin-error {
+    color: red;
+}
+ 
+/* @settings
+
+name: Floating TOC
+id: floating-toc-styles
+settings:
+    - 
+        id: floating-toc-font-color-header
+        title:  color setting
+        title.zh: 颜色相关设置
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: floating-toc-header-settings
+        title: Headers
+        title.zh: 大纲标题（H1-H6）
+        type: heading
+        level: 3
+        collapsed: true
+    -
+        id: floating-toc-remove-heading-indicator
+        title: Remove H1-H6 Indicators after Headings 
+        title.zh: 移除标题后的H1-H6
+        type: class-toggle
+        default: false
+    -
+        id: toggle-floating-toc-header-color 
+        title: toggle header color 
+        title.zh: 是否开启标题颜色
+        type: class-toggle
+        default: false
+    -
+        id: floating-toc-color-h1
+        title: Header 1
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: floating-toc-color-h2
+        title: Header 2
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: floating-toc-color-h3
+        title: Header 3
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: floating-toc-color-h4
+        title: Header 4
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+      id: floating-toc-color-h5
+      title: Header 5
+      type: variable-themed-color
+      opacity: true
+      format: hex
+      default-light: '#'
+      default-dark: '#'
+    -
+      id: floating-toc-color-h6
+      title: Header 6
+      type: variable-themed-color
+      opacity: true
+      format: hex
+      default-light: '#'
+      default-dark: '#'
+    -
+        id: floating-toc-settings
+        title:  Other color settings
+        title.zh: 其他颜色设置
+        type: heading
+        level: 3
+        collapsed: true
+    -
+        id: floating-toc-font-color
+        title: font color
+        title.zh: 目录字体颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#f5f6f8'
+        default-dark: '#1b1b1b'
+    - 
+        id: floating-toc-hover-color
+        title: hover color
+        title.zh: 鼠标聚焦hover色
+        description: The header color when the mouse is over the line .
+        description.zh: 当鼠标在条目上方时，标题颜色。
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#f5f6f8'
+        default-dark: '#1b1b1b'
+    - 
+        id: floating-toc-header-background-color
+        title: Header background color
+        title.zh: 标题背景色
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#ffffff8c'
+        default-dark: '#202020c4'
+    - 
+        id: floating-toc-background-color
+        title:  toc background color
+        title.zh: 目录背景色
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#dddddd4d'
+        default-dark: '#20202066'
+    -
+        id: floating-toc-highlight-color
+        title: highlight color
+        title.zh: 高亮颜色
+        description: Click on the header background color and the indicator color when scrolling .
+        description.zh: 点击标题背景色和同步滚动时的指示器颜色
+        type: variable-color
+        format: hex
+        alt-format:
+            -
+                id: floating-toc-highlight-color-rgb
+                format: rgb-values
+        default: '#ff8000'
+    - 
+        id: floating-toc-line-color
+        title: Indicator line color
+        title.zh: 指示条颜色
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#7a9486'
+        default-dark: '#84a83a'
+    - 
+        id: floating-toc-layout-header
+        title:  layout settings
+        title.zh: 版面相关设置
+        type: heading
+        level: 2
+        collapsed: true
+    -  
+        id: enable-heading-nowrap
+        title:  Header single line display
+        title.zh: 目录标题单行显示
+        type: class-toggle
+        default: false
+    -  
+        id: floating-toc-font-size
+        title: font size
+        title.zh: 字体大小
+        type: variable-number
+        format: rem
+        default: 0.7
+    - 
+        id: floating-toc-line-height
+        title: line height
+        title.zh: 目录行间距
+        type: variable-number
+        format: rem
+        default: 1.5
+    -
+        id: floating-toc-position
+        title: TOC Position relative to the edge
+        title.zh: TOC距离边界的相对位置
+        type: variable-number-slider
+        default: 0
+        format: px
+        min: -100
+        max: 100
+        step: 1
+    -
+        id: indicator-bar-position
+        title: Indicator bar position relative to the edge
+        title.zh: 指示条的相对位置
+        type: variable-number-slider
+        default: 0
+        format: em
+        min: -3
+        max: 3
+        step: 0.1
+    -  
+        id: floating-toc-line-width
+        title: Line Width of floating-toc
+        title.zh: 目录显示宽度
+        description: The maximum line width in rem units (1rem = Body font size)
+        type: variable-number
+        default: 18
+        format: rem
+    -
+        id: floating-toc-appearance-header
+        title:  Appearance settings
+        title.zh: 外观设置
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: enable-outline-style
+        title: enable outline style
+        title.zh: 显示层级线
+        type: class-select
+        allowEmpty: false
+        default: default-outline-style
+        options:
+          - 
+            label: Default
+            value: default-outline-style
+          - 
+            label: curves
+            value: float-curves-outline-style
+          - 
+            label: line
+            value: float-outline-style
+    -  
+        id: enable-bar-icon
+        title:  Replace the indicator bar with an icon
+        title.zh: 用图标代替指示条
+        type: class-toggle
+        default: false
+    -
+        id: enable-bar-heading-text
+        title:  Show heading text next to indicator bar (including parent)
+        title.zh: 在指示条旁边显示标题上下级
+        type: class-toggle
+        default: false
+    - 
+        id: focus-heading
+        title: Focus on the current heading
+        title.zh: 突出显示当前标题
+        description: Focus on  the header corresponding to the current scrollbar, other headers will be faded . Set the fade level here.
+        description.zh: 重点突出当前滚动条对应的标题，其他标题将淡化显示。这里调整淡化程度。
+        type: variable-number-slider
+        default: 0.9
+        min: 0
+        max: 1
+        step: 0.1
+    - 
+        id: floating-toc-response-time
+        title: Response Time
+        title.zh: 浮动目录响应速度
+        description: Adjust the eject sensitivity. The larger the value, the less sensitive it is
+        description.zh: 调整浮动目录弹出灵敏度。值越大越不灵敏
+        type: variable-number-slider
+        level: 1
+        format: s
+        default: 0.3
+        min: 0
+        max: 1
+        step: 0.1
+    -
+        id: floating-background-settings
+        title:  Notes background blur effect settings
+        title.zh: 笔记背景模糊效果设置
+        type: heading
+        level: 3
+        collapsed: true
+    - 
+        id: enable-background-blur-dept
+        title:  Activate Blurred background 
+        title.zh: 开启触发目录后笔记背景模糊效果
+        type: class-toggle
+        default: false
+    - 
+        id: background-blur-depth
+        title: Blurred background after opening the toc
+        title.zh: 触发目录背景模糊程度
+        description: To adjust the radius of blur
+        description.zh: 调整背景模糊程度
+        type: variable-number-slider
+        default: 2
+        format: px
+        min: 0
+        max: 30
+        step: 1
+    -
+        id: floating-toc
+        title: If you have ideas or feedback,  welcome to commit issues on github 😁
+        title.zh:  有任何想法可以跟我交流😁，欢迎来访，QQ群:908688452
+        type: heading
+        level: 1
+        collapsed: true
+*/
+
+.theme-light,
+.theme-dark {
+  --background-blur-depth:2px;
+  --floating-toc-font-color: var(--text-normal);
+  --floating-toc-hover-color: var(--text-accent-hover);
+  --floating-toc-font-size: 0.7rem;
+  --floating-toc-highlight-color: var(--text-highlight-bg-active);
+  --floating-toc-highlight-color-rgb: 255,128,0;
+  --floating-toc-line-color: var(--text-accent);
+  --floating-toc-line-height: 1.5rem;
+  --floating-toc-response-time: 0.3s;
+  --floating-toc-position:0px;
+  --focus-heading:0.9;
+  --floating-toc-line-width:18rem;
+ 
+}
+.theme-light{
+  --floating-toc-header-background-color:var(--background-primary);
+  --floating-toc-background-color: rgba(221, 221, 221, 0.3);
+}
+.theme-dark{
+  --floating-toc-header-background-color: rgb(32 32 32 / 77%);
+  --floating-toc-background-color: rgba(32, 32, 32, 0.4);
+}
+
+
+div.workspace-leaf-content[data-type="style-settings"] div.style-settings-heading[data-id="floating-toc"] {
+  margin-top: 10px;
+  margin-bottom: 0;
+  pointer-events: none;
+  cursor: text;
+  border-top: 2px solid var(--background-modifier-border);
+  pointer-events: none;
+}
+
+.style-settings-heading[data-id="floating-toc"] .setting-item-control,
+.style-settings-heading[data-id="floating-toc"] .style-settings-collapse-indicator {
+  display: none;
+}
+
+.style-settings-heading[data-id="floating-toc"] .setting-item-name::before {
+  display: inline-block;
+  width: 20px;
+  height: fit-content;
+  padding-right: 8px;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+  font-weight: initial;
+  color: unset;
+  content: "❤️";
+}
+
+
+.heading-list-item.located .line-wrap .line {
+  background: rgb(var(--floating-toc-highlight-color-rgb),0.8);
+  height: 2.5px;
+}
+
+.heading-list-item.located .text-wrap:not(.located) .text {
+  color: var(--floating-toc-highlight-color);
+}
+
+.heading-list-item .text-wrap.located .text {
+  background-color: rgba(var(--floating-toc-highlight-color-rgb),0.4);
+}
+
+.heading-list-item {
+
+  z-index: 1;
+  font-size: var(--floating-toc-font-size);
+  min-height: var(--floating-toc-line-height);
+  padding: 0;
+  white-space: nowrap;
+  position: relative;
+}
+
+.heading-list-item .line-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.5rem;
+  z-index: -1;
+  animation: lineAppear-72a6a55b 250ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes lineAppear-72a6a55b {
+  0% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    transform: translateX(0rem);
+  }
+}
+
+.heading-list-item .line-wrap .line {
+  position: absolute;
+  top: 50%;
+  margin-top: calc(2px / -2);
+  height: 2px;
+  width: 1.5rem;
+  background: var(--floating-toc-line-color);
+}
+
+.heading-list-item .text-wrap {
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  animation: textAppear-72a6a55b 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+@keyframes textAppear-72a6a55b {
+  0% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    transform: translateX(0rem);
+  }
+}
+
+.heading-list-item .text-wrap .text {
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--floating-toc-font-color);
+  backdrop-filter: blur(5px);
+  background: var(--floating-toc-header-background-color);
+}
+ 
+body.enable-heading-nowrap .floating-toc-div.pin .floating-toc .heading-list-item>.text-wrap {
+  max-width: unset;
+}
+body.enable-heading-nowrap .heading-list-item .text-wrap .text {
+  max-width: calc(var(--floating-toc-line-width) - 1rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.heading-list-item .text-wrap .text:hover {
+  color: var(--floating-toc-hover-color);
+  font-weight: bold;
+}
+
+.heading-list-item .text-wrap .text:hover::after {
+  font-size: 8px;
+}
+
+
+.heading-list-item:hover .line-wrap .line {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.heading-list-item:hover .text-wrap {
+  opacity: 1;
+  pointer-events: all;
+}
+.heading-list-item[data-level="2"] .text-wrap {
+  margin-left: 0.5rem;
+  
+}
+.heading-list-item[data-level="3"] .text-wrap {
+  margin-left: 1rem;
+}
+.heading-list-item[data-level="4"] .text-wrap {
+  margin-left: 1.5rem;
+}
+.heading-list-item[data-level="5"] .text-wrap {
+  margin-left: 2rem;
+ 
+}
+.heading-list-item[data-level="6"] .text-wrap {
+  margin-left: 2.5rem;
+  
+}
+
+.heading-list-item[data-level="1"] {
+  padding-left: 0rem;
+}
+
+.heading-list-item[data-level="1"] .text::after {
+  content: "H1";
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: normal !important;
+  padding: 1px 2px 1px 2px;
+}
+
+.heading-list-item[data-level="2"] {
+  padding-left: 0.5rem;
+}
+
+.heading-list-item[data-level="2"] .text::after {
+  content: "H2";
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: normal !important;
+  padding: 1px 2px 1px 2px;
+}
+
+.heading-list-item[data-level="3"] {
+  padding-left: 1rem;
+}
+
+.heading-list-item[data-level="3"] .text::after {
+  content: "H3";
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: normal !important;
+  padding: 1px 2px 1px 2px;
+}
+
+.heading-list-item[data-level="4"] {
+  padding-left: 1.5rem;
+}
+
+.heading-list-item[data-level="4"] .text::after {
+  content: "H4";
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: normal !important;
+  padding: 1px 2px 1px 2px;
+}
+
+.heading-list-item[data-level="5"] {
+  padding-left: 1.6rem;
+}
+
+.heading-list-item[data-level="5"] .text::after {
+  content: "H5";
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: normal !important;
+  padding: 1px 2px 1px 2px;
+}
+
+.heading-list-item[data-level="6"] {
+  padding-left: 1.8rem;
+}
+
+.heading-list-item[data-level="6"] .text::after {
+  content: "H6";
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: normal !important;
+  padding: 1px 2px 1px 2px;
+}
+
+
+.floating-toc {
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  bottom: 40px;
+  /* width: 13rem; */
+  scroll-behavior: smooth;
+  min-height: max-content;
+  max-height: calc(100% - 135px) ;
+  left:var(--floating-toc-position);
+  padding-top: 0.5rem;
+}
+
+.floating-toc-div.pin .floating-toc,
+.floating-toc:hover {
+  z-index: 2;
+  align-items: flex-start;
+  min-width: 6rem;
+  max-width: var( --floating-toc-line-width);
+  width: auto;
+  overflow-y: auto;
+  background: var(--floating-toc-background-color);
+}
+
+.floating-toc-div.pin .floating-toc::-webkit-scrollbar,
+.floating-toc:hover::-webkit-scrollbar {
+  display: none;
+}
+
+
+body:not(.enable-heading-nowrap) .floating-toc-div.pin .floating-toc .heading-list-item,
+body:not(.enable-heading-nowrap) .floating-toc:hover .heading-list-item {
+  min-height: auto;
+}
+.floating-toc-div:is(.hover,.pin) .floating-toc .heading-list-item
+{
+  padding:0 1rem;
+}
+ 
+.floating-toc-div.pin .floating-toc .heading-list-item
+{
+  max-width: fit-content;
+}
+
+body.enable-heading-nowrap .floating-toc-div.pin .floating-toc .heading-list-item>.text-wrap,
+body.enable-heading-nowrap .floating-toc:hover .heading-list-item>.text-wrap {
+  white-space: nowrap;
+}
+.floating-toc-div.pin .floating-toc .heading-list-item>.text-wrap,
+.floating-toc:hover .heading-list-item>.text-wrap {
+  /* min-width: 12rem; */
+  white-space: normal;
+  opacity: 1;
+  transition-delay: var(--floating-toc-response-time);
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: var(--floating-toc-response-time);
+  -webkit-transition-property: opacity;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+
+.floating-toc-div.pin .heading-list-item>.line-wrap,
+.floating-toc:hover .heading-list-item>.line-wrap {
+  display: none;
+
+}
+
+/* .workspace-leaf-content .floating-toc-div.pin:is(.floating-left,.floating-both)+.markdown-source-view .cm-editor {
+  padding-left: 2rem;
+ 
+} */
+
+ 
+
+.workspace-leaf-content .floating-toc-div:is(.floating-left,.floating-both)+.markdown-source-view .cm-editor {
+  padding-left:  2rem;
+}
+
+.workspace-leaf-content .floating-toc-div:is(.floating-left,.floating-both)~.markdown-reading-view .markdown-preview-view {
+  padding-left: 4rem;
+}
+
+.floating-toc-div:is(.floating-left,.floating-both)+.markdown-source-view .cm-panels {
+  margin-left: -2rem;
+}
+
+/****right*********/
+.floating-toc-div.pin .floating-toc .heading-list-item>.text-wrap a>a,
+.floating-toc-div .floating-toc:hover .heading-list-item>.text-wrap a>a {
+
+  pointer-events: none;
+}
+
+.floating-toc-div.pin .floating-toc .heading-list-item>.text-wrap a>a.external-link,
+.floating-toc-div .floating-toc:hover .heading-list-item>.text-wrap a>a.external-link {
+
+  background-image: none;
+}
+
+
+
+.workspace-leaf-content .floating-toc-div.floating-right~.markdown-reading-view .markdown-preview-view {
+  padding-right: 2rem;
+  
+}
+
+.floating-toc-div.floating-right .floating-toc {
+  right: calc(0.5rem + var(--floating-toc-position));
+  align-items: flex-end;
+  left: unset;
+}
+
+.floating-toc-div.floating-right .heading-list-item {
+  text-align: right;
+}
+
+.floating-toc-div.floating-right .heading-list-item .line-wrap {
+  right: 0.5rem;
+}
+
+
+.floating-toc-div.floating-right .heading-list-item[data-level="1"] .line-wrap {
+  padding-left: 0.5rem;
+}
+
+.floating-toc-div.floating-right .heading-list-item[data-level="2"] .line-wrap {
+  padding-left: 0.7rem;
+}
+
+.floating-toc-div.floating-right .heading-list-item[data-level="3"] .line-wrap {
+  padding-left: 0.9rem;
+}
+
+.floating-toc-div.floating-right .heading-list-item[data-level="4"] .line-wrap {
+  padding-left: 1.1rem;
+}
+
+.floating-toc-div.floating-right .heading-list-item[data-level="5"] .line-wrap {
+  padding-left: 1.3rem;
+}
+
+.floating-toc-div.floating-right .heading-list-item[data-level="6"] .line-wrap {
+  padding-left: 1.5rem;
+}
+
+.floating-toc-div.floating-right.pin .floating-toc .heading-list-item>.text-wrap,
+.floating-toc-div.floating-right .floating-toc:hover .heading-list-item>.text-wrap {
+  justify-content: flex-end;
+  text-align: right;
+  display: inline-flex;
+}
+
+/****pin button***/
+
+.floating-right.floating-toc-div .toolbar.pin {
+  right: 10px;
+ 
+}
+
+
+.floating-toc-div.pin .toolbar.pin {
+  opacity: 1;
+  display: block;
+}
+
+
+.floating-toc-div .toolbar.pin:hover {
+  opacity: 1;
+
+}
+.floating-toc-div .toolbar button:hover {
+  box-shadow: none;
+  color: var( --interactive-accent-hover);
+
+  transform: scale(1.2);
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translateX(-0.1px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translateX(0.1px);
+  }
+}
+.floating-toc-div .toolbar.pin.hide {
+ display: none;
+}
+
+.floating-toc-div .toolbar
+{
+  display: list-item;
+  opacity: 0.8;
+  z-index: 2;
+  background: var(--floating-toc-background-color);
+  position: fixed;
+  top: 75px;
+  margin-left: 10px;
+}
+.floating-toc-div.pin .toolbar.pin 
+{
+display: block;
+}
+.floating-toc-div.pin .toolbar.pin  button[aria-label="pin"]
+{
+color: var(--interactive-accent-hover);
+animation: shake 0.5s 2 alternate linear; /* 设置动画为2秒钟的时间，并无限循环 */
+}
+.floating-toc-div .toolbar  button
+{
+  margin: 0;
+  padding: 0 10px;
+  background-color:transparent;
+  margin-right: 5px;
+  width: 10px;
+  display: inline-grid;
+  box-shadow: none;
+  transition: transform 0.3s;
+}
+
+.floating-toc-div .toolbar  button svg{
+  width: 12px;
+  height: 12px;
+}
+
+
+
+.floating-toc-div.pin .floating-toc .heading-list-item>.text-wrap {
+  max-width: calc(var(--floating-toc-line-width) - 1rem);
+}
+
+
+body.enable-background-blur-dept .workspace-leaf-content .floating-toc-div.hover:not(.pin)+.markdown-source-view .cm-editor
+{
+  
+  filter: blur(var(--background-blur-depth));
+  -webkit-filter: blur(var(--background-blur-depth));
+  background: var(--floating-toc-background-color);
+}
+body.enable-background-blur-dept .workspace-leaf-content .floating-toc-div.hover:not(.pin) ~.markdown-reading-view .markdown-preview-view
+{
+  filter: blur(var(--background-blur-depth));
+  -webkit-filter: blur(var(--background-blur-depth));
+  background: var(--floating-toc-background-color);
+}
+
+body.enable-background-blur-dept .floating-toc-div.hover:not(.pin) .heading-list-item .text-wrap:not(.located) .text {
+  background: transparent;
+  
+   
+}
+
+body.enable-background-blur-dept .floating-toc-div.pin .floating-toc,
+body.enable-background-blur-dept .floating-toc:hover {
+  background: transparent;
+}
+
+
+/****alignLeft**/
+
+.floating-toc-div.floating-right.alignLeft .floating-toc {
+ 
+    align-items: flex-start;
+}
+.floating-right.floating-toc-div.alignLeft .toolbar.pin {
+  right: 4rem;
+}
+.floating-toc-div.floating-right.alignLeft.pin .floating-toc .heading-list-item>.text-wrap, 
+.floating-toc-div.floating-right.alignLeft .floating-toc:hover .heading-list-item>.text-wrap
+{
+   max-width: 12rem;
+    text-overflow: ellipsis;
+justify-content: flex-start;
+
+text-align: left;
+}
+
+ 
+ 
+
+/* .heading-list-item.located  .text::before
+{
+  content: "•";
+  margin-right: 2px;
+  margin-left: -0.5rem;
+} */
+/* .heading-list-item.focus  .text::before
+{
+  content: "▾";
+  margin-right: 2px;
+  margin-left: -1rem;
+} */
+heading-list-item.focus  .text
+{
+ font-weight: bold;
+} 
+.floating-toc-div:not(:is(.hover,.pin)) .heading-list-item
+{
+  width: 2rem;
+  overflow: hidden;
+  margin-left: var(--indicator-bar-position);
+}
+.floating-toc-div:hover .heading-list-item
+{
+  width: unset;
+}
+.floating-toc-div:not(:is(.hover)) .heading-list-item:not(:is(.located,.focus))
+{
+opacity: var(--focus-heading);
+}
+
+ 
+
+/****enable-bar-heading-text**/
+
+body.enable-bar-heading-text .floating-toc-div:not(:is(.hover,.pin)) .heading-list-item:is(.located,.focus)
+{
+width:unset;
+}
+body.enable-bar-heading-text  .floating-toc-div:not(:is(.hover,.pin)) .heading-list-item:is(.located,.focus) .text-wrap
+{
+  opacity: 1;
+  margin-left: 10px;
+ 
+}
+body.enable-bar-heading-text .floating-toc-div:not(:is(.hover,.pin)) .heading-list-item:is(.located,.focus) .text-wrap .text
+{
+  max-width: 12rem;
+  overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+  color: var(--text-normal);
+}
+
+body.enable-bar-heading-text .floating-toc-div:not(:is(.hover,.pin)) .heading-list-item:is(.located,.focus) .text-wrap .text::before
+{
+content: '';
+margin-left: 0.2rem;
+}
+
+.heading-list-item.focus .text-wrap .text {
+  font-weight:bolder;
+}
+/******/
+ .heading-list-item:not(.focus,.located) .text-wrap .text {
+  font-weight:normal;
+}
+
+.workspace-tabs.mod-stacked  .workspace-tab-header:not(.is-active) + .workspace-leaf .floating-toc-div
+{
+  opacity: 0;
+}
+
+/******/
+
+
+/**第二个tabs右侧*/
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both~.markdown-reading-view .markdown-preview-view {
+  padding-right: 2rem;
+  
+}
+ 
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .floating-toc {
+  right: calc(0.5rem + var(--floating-toc-position));
+  align-items: flex-end;
+  left: unset;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item {
+  text-align: right;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item .line-wrap {
+  right: 0.5rem;
+}
+
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item[data-level="1"] .line-wrap {
+  padding-left: 0.5rem;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item[data-level="2"] .line-wrap {
+  padding-left: 0.7rem;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item[data-level="3"] .line-wrap {
+  padding-left: 0.9rem;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item[data-level="4"] .line-wrap {
+  padding-left: 1.1rem;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item[data-level="5"] .line-wrap {
+  padding-left: 1.3rem;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .heading-list-item[data-level="6"] .line-wrap {
+  padding-left: 1.5rem;
+}
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both.pin .floating-toc .heading-list-item>.text-wrap,
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both .floating-toc:hover .heading-list-item>.text-wrap {
+  justify-content: flex-end;
+  text-align: right;
+  display: inline-flex;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-tabs 
+.floating-toc-div.floating-both~.markdown-reading-view .markdown-preview-view {
+  padding-right: 2rem;
+  
+}
+/**垂直分割后第二个tabs*/
+
+.workspace-split.mod-vertical > .workspace-tabs ~.workspace-tabs .floating-toc-div.floating-both + .markdown-source-view .cm-editor {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+.workspace-split.mod-vertical > .workspace-tabs ~.workspace-tabs .floating-toc-div.floating-both ~.markdown-reading-view .markdown-preview-view {
+  padding-left: 2rem;
+  padding-right: 4rem;
+}
+
+.workspace-split.mod-vertical > .workspace-tabs ~.workspace-tabs .floating-toc-div.floating-both.alignLeft.hover .floating-toc
+{
+  align-items: flex-start;
+}
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs 
+ .floating-toc-div.floating-both .floating-toc {
+  right: calc(0.5rem + var(--floating-toc-position));
+  align-items: flex-end;
+  left: unset;
+}
+
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item {
+  text-align: right;
+}
+
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item .line-wrap {
+  right: 0.5rem;
+}
+
+ 
+
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs  
+.floating-toc-div.floating-both.pin .floating-toc .heading-list-item>.text-wrap,
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs 
+ .floating-toc-div.floating-both .floating-toc:hover .heading-list-item>.text-wrap {
+  justify-content: flex-end;
+  text-align: right;
+  display: inline-flex;
+}
+
+
+/**垂直分割 然后水平分割的tabs*/
+
+
+ 
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .floating-toc {
+  right: calc(0.5rem + var(--floating-toc-position));
+  align-items: flex-end;
+  left: unset;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item {
+  text-align: right;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item .line-wrap {
+  right: 0.5rem;
+}
+
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="1"] .line-wrap {
+  padding-left: 0.5rem;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="2"] .line-wrap {
+  padding-left: 0.7rem;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="3"] .line-wrap {
+  padding-left: 0.9rem;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="4"] .line-wrap {
+  padding-left: 1.1rem;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="5"] .line-wrap {
+  padding-left: 1.3rem;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item[data-level="6"] .line-wrap {
+  padding-left: 1.5rem;
+}
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both.pin .floating-toc .heading-list-item>.text-wrap,
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .floating-toc:hover .heading-list-item>.text-wrap {
+  justify-content: flex-end;
+  text-align: right;
+  display: inline-flex;
+}
+/***/
+
+/**两个垂直分割 水平分割的tabs*/
+ 
+.workspace-split.mod-horizontal  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .floating-toc {
+  right: calc(0.5rem + var(--floating-toc-position));
+  align-items: flex-end;
+  left: unset;
+}
+.workspace-split.mod-horizontal  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both:is(.pin,.hover) .floating-toc {
+  right: calc(-2.5rem + var(--floating-toc-position));
+  align-items: unset;
+  left: unset;
+}
+.workspace-split.mod-vertical   ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item {
+  text-align: right;
+}
+
+.workspace-split.mod-vertical  ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item .line-wrap {
+  right: 0.5rem;
+}
+
+
+.workspace-split.mod-vertical   ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="1"] .line-wrap {
+  padding-left: 0.5rem;
+}
+
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="2"] .line-wrap {
+  padding-left: 0.7rem;
+}
+
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="3"] .line-wrap {
+  padding-left: 0.9rem;
+}
+
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="4"] .line-wrap {
+  padding-left: 1.1rem;
+}
+
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both .heading-list-item[data-level="5"] .line-wrap {
+  padding-left: 1.3rem;
+}
+
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .heading-list-item[data-level="6"] .line-wrap {
+  padding-left: 1.5rem;
+}
+
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs  
+.floating-toc-div.floating-both.pin .floating-toc .heading-list-item>.text-wrap,
+.workspace-split.mod-vertical    ~.workspace-split.mod-horizontal>.workspace-tabs 
+ .floating-toc-div.floating-both .floating-toc:hover .heading-list-item>.text-wrap {
+  justify-content: flex-end;
+  text-align: right;
+  display: inline-flex;
+}
+
+
+/***/
+
+/**第二个tabs右侧*/
+
+
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both.alignLeft .toolbar.pin {
+  right: 4rem;
+}
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both.alignLeft.pin .floating-toc .heading-list-item>.text-wrap, 
+.workspace-tabs~.workspace-tabs.mod-top-right-space  .floating-toc-div.floating-both.alignLeft .floating-toc:hover .heading-list-item>.text-wrap
+{
+   max-width: 12rem;
+    text-overflow: ellipsis;
+justify-content: flex-start;
+text-align: left;
+}
+
+ 
+ 
+
+/**垂直分割 然后水平分割的tabs*/
+
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  .floating-toc-div.floating-both.alignLeft .toolbar.pin {
+  right: 4rem;
+}
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  .floating-toc-div.floating-both.alignLeft.pin .floating-toc .heading-list-item>.text-wrap, 
+.workspace-split.mod-vertical  .workspace-tabs  ~.workspace-split.mod-horizontal>.workspace-tabs  .floating-toc-div.floating-both.alignLeft .floating-toc:hover .heading-list-item>.text-wrap
+{
+   max-width: 12rem;
+    text-overflow: ellipsis;
+justify-content: flex-start;
+text-align: left;
+}
+
+  
+/***floating-both.alignLeft***/
+
+
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs .floating-toc-div.floating-both.alignLeft .toolbar.pin {
+  right: 4rem;
+}
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs .floating-toc-div.floating-both.alignLeft.pin .floating-toc .heading-list-item>.text-wrap, 
+.workspace-split.mod-vertical > .workspace-tabs  ~.workspace-tabs .floating-toc-div.floating-both.alignLeft .floating-toc:hover .heading-list-item>.text-wrap
+{
+   max-width: 12rem;
+    text-overflow: ellipsis;
+justify-content: flex-start;
+text-align: left;
+}
+
+ 
+ 
+
+
+ 
+
+/*****/
+.setting-item-heading.float-cta:after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 104%;
+  left: -2%;
+  height: 120%;
+  outline: 2px solid var(--text-accent);
+  border-radius: 1em;
+  pointer-events: none;
+}
+.setting-item-heading.float-cta {
+  position: relative;
+}
+ 
+
+.floating-toc-remove-heading-indicator .heading-list-item[data-level] .text::after {
+  display: none;
+}
+
+body:not(.toggle-floating-toc-header-color) .setting-item[data-id^="floating-toc-color-"]
+{
+  display: none;
+}
+
+body.toggle-floating-toc-header-color .floating-toc-div .floating-toc 
+.heading-list-item[data-level="1"] a.text
+{
+ color:var(--floating-toc-color-h1,var(--h1-color));
+}
+body.toggle-floating-toc-header-color .floating-toc-div .floating-toc 
+.heading-list-item[data-level="2"] a.text
+{
+  color:var(--floating-toc-color-h2,var(--h2-color));
+}
+body.toggle-floating-toc-header-color .floating-toc-div .floating-toc 
+.heading-list-item[data-level="3"] a.text
+{
+  color:var(--floating-toc-color-h3,var(--h3-color));
+}
+body.toggle-floating-toc-header-color .floating-toc-div .floating-toc 
+.heading-list-item[data-level="4"] a.text
+{
+  color:var(--floating-toc-color-h4,var(--h4-color));
+}
+body.toggle-floating-toc-header-color .floating-toc-div .floating-toc 
+.heading-list-item[data-level="5"] a.text
+{
+  color:var(--floating-toc-color-h5,var(--h5-color));
+}
+body.toggle-floating-toc-header-color .floating-toc-div .floating-toc 
+.heading-list-item[data-level="6"] a.text
+{
+  color:var(--floating-toc-color-h6,var(--h6-color));
+}
+
+/**************/
+
+.enable-bar-icon .floating-toc-div:not(.hover)  .floating-toc:before {
+  content: '';
+  height: 12px;
+  z-index: 10;
+  background-repeat: no-repeat;
+  cursor: var(--cursor);
+  text-align: right;
+  padding: 4px 20px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: var(--font-adaptive-small);
+}
+.enable-bar-icon .floating-toc-div:not(.hover) .floating-toc:before {
+  opacity: .35;
+  background-position: center center;
+  background-size: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg t='1671519666455' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='11772' width='16' height='16'%3E%3Cpath d='M887.212102 264.644379 320.083527 264.644379c-29.826306 0-54.012148-23.896246-54.012148-53.723575s24.185842-53.723575 54.012148-53.723575l567.127552 0c29.827329 0 54.012148 23.896246 54.012148 53.723575S917.039431 264.644379 887.212102 264.644379zM887.212102 562.426483 320.083527 562.426483c-29.826306 0-54.012148-24.408923-54.012148-54.235229 0-29.828352 24.185842-54.235229 54.012148-54.235229l567.127552 0c29.827329 0 54.012148 24.406876 54.012148 54.235229C941.22425 538.018583 917.039431 562.426483 887.212102 562.426483zM887.212102 859.18528 320.083527 859.18528c-29.826306 0-54.012148-24.407899-54.012148-54.235229s24.185842-54.235229 54.012148-54.235229l567.127552 0c29.827329 0 54.012148 24.407899 54.012148 54.235229S917.039431 859.18528 887.212102 859.18528zM153.565003 257.94377l-47.261397 0c-13.05534 0-23.630187-10.601452-23.630187-23.655769l0-47.234791c0-13.080923 10.574846-23.630187 23.630187-23.630187l47.261397 0c13.054317 0 23.630187 10.549264 23.630187 23.630187l0 47.234791C177.19519 247.341295 166.61932 257.94377 153.565003 257.94377L153.565003 257.94377zM153.565003 852.076372l-47.261397 0c-13.05534 0-23.630187-10.600429-23.630187-23.655769l0-47.233768c0-13.080923 10.574846-23.63121 23.630187-23.63121l47.261397 0c13.054317 0 23.630187 10.550287 23.630187 23.63121l0 47.233768C177.19519 841.475943 166.61932 852.076372 153.565003 852.076372L153.565003 852.076372zM153.565003 541.507034l-47.261397 0c-13.05534 0-23.630187-10.601452-23.630187-23.655769l0-47.234791c0-13.080923 10.574846-23.630187 23.630187-23.630187l47.261397 0c13.054317 0 23.630187 10.549264 23.630187 23.630187l0 47.234791C177.19519 530.905582 166.61932 541.507034 153.565003 541.507034L153.565003 541.507034z' fill='white' p-id='11773'%3E%3C/path%3E%3C/svg%3E");
+}
+.theme-light.enable-bar-icon  .floating-toc-div:not(.hover) .floating-toc:before {
+    background-image: url("data:image/svg+xml,%3Csvg t='1671519666455' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='11772' width='16' height='16'%3E%3Cpath d='M887.212102 264.644379 320.083527 264.644379c-29.826306 0-54.012148-23.896246-54.012148-53.723575s24.185842-53.723575 54.012148-53.723575l567.127552 0c29.827329 0 54.012148 23.896246 54.012148 53.723575S917.039431 264.644379 887.212102 264.644379zM887.212102 562.426483 320.083527 562.426483c-29.826306 0-54.012148-24.408923-54.012148-54.235229 0-29.828352 24.185842-54.235229 54.012148-54.235229l567.127552 0c29.827329 0 54.012148 24.406876 54.012148 54.235229C941.22425 538.018583 917.039431 562.426483 887.212102 562.426483zM887.212102 859.18528 320.083527 859.18528c-29.826306 0-54.012148-24.407899-54.012148-54.235229s24.185842-54.235229 54.012148-54.235229l567.127552 0c29.827329 0 54.012148 24.407899 54.012148 54.235229S917.039431 859.18528 887.212102 859.18528zM153.565003 257.94377l-47.261397 0c-13.05534 0-23.630187-10.601452-23.630187-23.655769l0-47.234791c0-13.080923 10.574846-23.630187 23.630187-23.630187l47.261397 0c13.054317 0 23.630187 10.549264 23.630187 23.630187l0 47.234791C177.19519 247.341295 166.61932 257.94377 153.565003 257.94377L153.565003 257.94377zM153.565003 852.076372l-47.261397 0c-13.05534 0-23.630187-10.600429-23.630187-23.655769l0-47.233768c0-13.080923 10.574846-23.63121 23.630187-23.63121l47.261397 0c13.054317 0 23.630187 10.550287 23.630187 23.63121l0 47.233768C177.19519 841.475943 166.61932 852.076372 153.565003 852.076372L153.565003 852.076372zM153.565003 541.507034l-47.261397 0c-13.05534 0-23.630187-10.601452-23.630187-23.655769l0-47.234791c0-13.080923 10.574846-23.630187 23.630187-23.630187l47.261397 0c13.054317 0 23.630187 10.549264 23.630187 23.630187l0 47.234791C177.19519 530.905582 166.61932 541.507034 153.565003 541.507034L153.565003 541.507034z' fill='%23272636' p-id='11773'%3E%3C/path%3E%3C/svg%3E");
+  }
+  .enable-bar-icon  .floating-toc-div:not(.pin)  .floating-toc:not(:hover) li
+ {
+  display: none;
+ }
+ .enable-bar-icon  .floating-toc-div.pin  .floating-toc:before 
+ {
+  display: none;
+ }
+
+/******/
+
+
+ 
+body.float-curves-outline-style  .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='1'] + li.heading-list-item[data-level='2']::before, 
+body.float-curves-outline-style  .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='2'] + li.heading-list-item[data-level='3']::before, 
+body.float-curves-outline-style .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='3'] + li.heading-list-item[data-level='4']::before ,
+body.float-curves-outline-style .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='4'] + li.heading-list-item[data-level='5']::before ,
+body.float-curves-outline-style .floating-toc-div:is(.hover,.pin) 
+ .heading-list-item[data-level='5'] + li.heading-list-item[data-level='6']::before 
+{
+  top: calc(calc(var(--nav-item-size) * 1.8) / 2 * -0.8)!important;
+
+}
+
+body.float-curves-outline-style  .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='1'] ~ .heading-list-item[data-level='2']:not([iscollapsed])::before, 
+body.float-curves-outline-style  .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='2'] ~ .heading-list-item[data-level='3']:not([iscollapsed])::before, 
+body.float-curves-outline-style .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='3'] ~ .heading-list-item[data-level='4']:not([iscollapsed])::before ,
+body.float-curves-outline-style .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='4'] ~ .heading-list-item[data-level='5']:not([iscollapsed])::before ,
+body.float-curves-outline-style .floating-toc-div:is(.hover,.pin) 
+.heading-list-item[data-level='5'] ~ .heading-list-item[data-level='6']:not([iscollapsed])::before 
+ {
+    content: " ";
+    position: absolute;
+    top: calc(calc(var(--nav-item-size) * 1.8) / 2 * -1.6);
+    /* left: -10px; */
+    bottom: calc(100% - (calc(var(--nav-item-size) * 1.8) - 4px) / 2 );
+    width: 18px;
+    border-bottom-left-radius: var(--radius-m);
+    border-bottom: 1.5px solid hsla(var(--color-accent-hsl), 0.9);
+    border-left: 2px solid hsla(var(--color-accent-hsl), 0.9);
+    pointer-events: none;
+}
+.heading-list-item[data-level='2']::before
+{
+  left: 0.7rem;
+}
+.heading-list-item[data-level='3']::before
+{
+  left: 1.2rem;
+}
+.heading-list-item[data-level='4']::before
+{
+  left: 1.7rem;
+}
+.heading-list-item[data-level='5']::before
+{
+  left: 2.2rem;
+}
+.heading-list-item[data-level='6']::before
+{
+  left: 2.7rem;
+}
+
+
+body.float-outline-style 
+.heading-list-item[data-level='2'] + .heading-list-item[data-level='2']::before, 
+body.float-outline-style 
+.heading-list-item[data-level='3'] + .heading-list-item[data-level='3']::before ,
+body.float-outline-style 
+.heading-list-item[data-level='4'] + .heading-list-item[data-level='4']::before ,
+body.float-outline-style 
+ .heading-list-item[data-level='5'] + .heading-list-item[data-level='5']::before ,
+ body.float-outline-style 
+ .heading-list-item[data-level='6'] + .heading-list-item[data-level='6']::before 
+ {
+    content: " ";
+      position: absolute;
+      display: block;
+ 
+      top: -2.6em;
+      bottom: 100%;
+      border-right: 1px solid var(--text-muted);
+      pointer-events: none;
+   
+ }
+ 
+ /*********/
+
+
+ .floating-toc-div.hide
+ {
+  display:none;
+ }
+ 
+ 
+ 
+/******/
+/* 默认不显示伪元素 */
+/* .heading-list-item::before {
+    content: '';
+} */
+
+/* 对于折叠状态 */
+.floating-toc-div.pin .heading-list-item[isCollapsed="true"] .heading-rendered::before,
+.floating-toc-div.hover .heading-list-item[isCollapsed="true"] .heading-rendered::before {
+    /* content: '▶';  */
+    /* 源文件是src/resources/右键头，需要调整颜色和大小后转化成 URL encoded */
+    content: url("data:image/svg+xml,%3C%3Fxml version='1.0' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg t='1701099392052' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='4217' xmlns:xlink='http://www.w3.org/1999/xlink' width='0.65em' height='0.65em'%3E%3Cpath d='M757.792745 435.407215L419.597482 96.904967c-40.010393-40.010393-104.886579-40.010393-144.896972 0-40.010393 40.010393-40.010393 104.988908 0 144.9993L540.344959 507.855701 274.70051 773.807135c-40.010393 40.112721-40.010393 104.988908 0 144.9993 40.010393 40.010393 104.886579 40.010393 144.896972 0l338.092935-338.39992c40.112721-40.010393 40.112721-104.988908 0.102328-144.9993z' fill='%23d3c6aa' p-id='4218'%3E%3C/path%3E%3C/svg%3E%0A");
+    position: absolute;
+    width: 1em; 
+    margin-left: -0.9em; /* 向左偏移自身宽度，使伪元素不占用.text-wrap的空间 */
+    pading-right: 0.5rem;
+    z-index: 2;
+    left: 0; /* 使伪元素位于li的最左边 */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%); /* 偏移自身高度的一半以实现精确的垂直居中 */
+    text-align: center; /* 确保字符水平居中 */
+}
+
+/* 对于展开状态 */
+.floating-toc-div.pin .heading-list-item[isCollapsed="false"] .heading-rendered::before,
+.floating-toc-div.hover .heading-list-item[isCollapsed="false"] .heading-rendered::before {
+    /* content: '▼';  */
+    content: url("data:image/svg+xml,%3C%3Fxml version='1.0' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg t='1701099490786' class='icon' viewBox='0 0 1026 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='7616' xmlns:xlink='http://www.w3.org/1999/xlink' width='0.65em' height='0.65em'%3E%3Cpath d='M857.088 224.256q28.672-28.672 69.12-28.672t69.12 28.672q29.696 28.672 29.696 68.608t-29.696 68.608l-382.976 380.928q-12.288 14.336-30.72 19.968t-38.912 4.608-40.448-8.704-34.304-22.016l-376.832-374.784q-29.696-28.672-29.696-68.608t29.696-68.608q14.336-14.336 32.256-21.504t36.864-7.168 37.376 7.168 32.768 21.504l313.344 309.248z' fill='%23d3c6aa' p-id='7617'%3E%3C/path%3E%3C/svg%3E%0A");
+    position: absolute;
+    width: 1em; 
+    margin-left: -0.9em; 
+    pading-right: 0.5rem;
+    z-index: 2;
+    left: 0; 
+    top: 50%; 
+    transform: translateY(-50%);
+    text-align: center;
+}
+.check-list {
+    gap: 0.2em;
+    display: flex;
+    padding: 6px;
+}
+.check-item {
+    display: flex;
+    padding: 3px 8px 3px 8px;
+    align-items: center;
+}
+
+.floating-toc>.toolbar + .heading-list-item
+{
+  padding-top:0.5rem;
+}
+
+  /* Horizontally center the graph in the page content */
+.desmos-graph {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Page breaks */
+    @media print {
+      h1:first-of-type { 
+        page-break-before: avoid;
+      }
+      h1 { 
+        page-break-before: always;
+      }
+      h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+      }
+      /* optional */
+      .internal-embed{
+        page-break-after: avoid;
+        page-break-before: avoid;}
+    }
+
+.callout {
+    page-break-inside: avoid; /* Avoid breaking inside a callout */
+    page-break-after: auto; /* Automatic page break after a callout */
+    page-break-before: auto; /* Automatic page break before a callout */
+  }
+
+@page {
+    margin-left: 2.5cm;
+    margin-right: 2.5cm;
+    margin-top: 1.5cm;
+    margin-bottom: 1.5cm;
+  }
+
+
+ .CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+ .CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+ .CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+ 
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-msubsup {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-script {
+  display: inline-block;
+  padding-right: .05em;
+  padding-left: .033em;
+}
+
+mjx-script > mjx-spacer {
+  display: block;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-msub {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("app://obsidian.md/lib/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c1D456.TEX-I::before {
+  padding: 0.661em 0.345em 0.011em 0;
+  content: "i";
+}
+
+mjx-c.mjx-c1D457.TEX-I::before {
+  padding: 0.661em 0.412em 0.204em 0;
+  content: "j";
+}
+
+mjx-c.mjx-c1D45D.TEX-I::before {
+  padding: 0.442em 0.503em 0.194em 0;
+  content: "p";
+}
+
+mjx-c.mjx-c28::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c1D45B.TEX-I::before {
+  padding: 0.442em 0.6em 0.011em 0;
+  content: "n";
+}
+
+mjx-c.mjx-c29::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: ")";
+}
+
+mjx-c.mjx-c2265::before {
+  padding: 0.636em 0.778em 0.138em 0;
+  content: "\2265";
+}
+
+mjx-c.mjx-c30::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "0";
+}
+
+mjx-c.mjx-c3E::before {
+  padding: 0.54em 0.778em 0.04em 0;
+  content: ">";
+}
+
+mjx-c.mjx-c1D458.TEX-I::before {
+  padding: 0.694em 0.521em 0.011em 0;
+  content: "k";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+ 
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Bold.woff") format("woff");
+}
+</style>
+    </head>
+    <body>
+
+<div data-callout-metadata="" data-callout-fold="" data-callout="info" class="callout"><div class="callout-title"><div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-info"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path><style>
+:root {
+  --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+  --font-monospace: 'Source Code Pro', monospace;
+  --background-primary: #ffffff;
+  --background-modifier-border: #ddd;
+  --text-accent: #705dcf;
+  --text-accent-hover: #7a6ae6;
+  --text-normal: #2e3338;
+  --background-secondary: #f2f3f5;
+  --background-secondary-alt: #e3e5e8;
+  --text-muted: #888888;
+}</style>"<marker id="mermaid_arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker>"</svg></div><div class="callout-title-inner">Long-run behavior of finite-state Markov chains</div></div><div class="callout-content">
+<p>For any irreducible ergodic Markov chain <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-munder space="4" limits="false"><mjx-mo class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6D"></mjx-c></mjx-mo><mjx-script style="vertical-align: -0.15em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-munder><mjx-msubsup space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.294em; margin-left: 0px;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-texatom><mjx-spacer style="margin-top: 0.18em;"></mjx-spacer><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msubsup></mjx-math></mjx-container></span> exists, where <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span> and is independent of <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>. Where <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span> uniquely satisfies:</p>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-munderover space="4"><mjx-over style="padding-bottom: 0.2em; padding-left: 0.35em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D440 TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-over><mjx-box><mjx-munder><mjx-row><mjx-base><mjx-mo class="mjx-lop"><mjx-c class="mjx-c2211 TEX-S2"></mjx-c></mjx-mo></mjx-base></mjx-row><mjx-row><mjx-under style="padding-top: 0.167em; padding-left: 0.148em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-texatom></mjx-under></mjx-row></mjx-munder></mjx-box></mjx-munderover><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mtext class="mjx-n" space="2"><mjx-c class="mjx-cA0"></mjx-c><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2026"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D440 TEX-I"></mjx-c></mjx-mi><mjx-mstyle><mjx-mspace style="width: 0.167em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></div>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-munderover><mjx-over style="padding-bottom: 0.2em; padding-left: 0.35em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D440 TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-over><mjx-box><mjx-munder><mjx-row><mjx-base><mjx-mo class="mjx-lop"><mjx-c class="mjx-c2211 TEX-S2"></mjx-c></mjx-mo></mjx-base></mjx-row><mjx-row><mjx-under style="padding-top: 0.167em; padding-left: 0.148em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-texatom></mjx-under></mjx-row></mjx-munder></mjx-box></mjx-munderover><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mstyle><mjx-mspace style="width: 0.167em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></div>
+</div></div>
+<h2 data-heading="How to calculate $\pi_j$">How to calculate <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span></h2>
+<ol>
+<li>Check that the steady state probabilities exists (e.g. Markov chain is irreducible and ergodic).</li>
+<li>Write <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> as a system of linear equations <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>, with right hand side "<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span>".</li>
+<li>Add equation <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-munderover limits="false"><mjx-mo class="mjx-sop"><mjx-c class="mjx-c2211 TEX-S1"></mjx-c></mjx-mo><mjx-script style="vertical-align: -0.285em; margin-left: 0px;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D440 TEX-I"></mjx-c></mjx-mi></mjx-texatom><mjx-spacer style="margin-top: 0.291em;"></mjx-spacer><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-munderover><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mstyle><mjx-mspace style="width: 0.167em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span> to <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> and <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>.</li>
+<li>Solve using fx Julia</li>
+<li>One of the equations in <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> is redudant and can be left out (any of them).</li>
+</ol>
+<h6 data-heading="Matrix notation">Matrix notation</h6>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D400 TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D40F TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-script style="vertical-align: 0.413em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-texatom space="3" texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D408 TEX-B"></mjx-c></mjx-mi></mjx-texatom></mjx-math></mjx-container></div>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D41B TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c5B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2026"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c5D"></mjx-c></mjx-mo></mjx-math></mjx-container></div>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-msup><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D400 TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-script style="vertical-align: 0.413em;"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mrow space="4"><mjx-mo class="mjx-s3"><mjx-c class="mjx-c5B TEX-S3"></mjx-c></mjx-mo><mjx-mtable style="min-width: 5.213em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-bottom: 0.2em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c22EF"></mjx-c></mjx-mo><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-right: 0.5em; padding-bottom: 0.2em;"><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D400 TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-bottom: 0.2em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c22EF"></mjx-c></mjx-mo><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-top: 0.2em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c22EF"></mjx-c></mjx-mo><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable><mjx-mo class="mjx-s3"><mjx-c class="mjx-c5D TEX-S3"></mjx-c></mjx-mo></mjx-mrow></mjx-math></mjx-container></div>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-texatom texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi></mjx-texatom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac type="d"><mjx-num><mjx-nstrut type="d"></mjx-nstrut><mjx-msup><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D400 TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-script style="vertical-align: 0.363em;"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msup></mjx-num><mjx-dbox><mjx-dtable><mjx-line type="d"></mjx-line><mjx-row><mjx-den><mjx-dstrut type="d"></mjx-dstrut><mjx-msup><mjx-texatom texclass="ORD"><mjx-mi class="mjx-b"><mjx-c class="mjx-c1D41B TEX-B"></mjx-c></mjx-mi></mjx-texatom><mjx-script style="vertical-align: 0.289em;"><mjx-mi class="mjx-n" size="s"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-script></mjx-msup></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math></mjx-container></div>
+<div data-callout-metadata="" data-callout-fold="+" data-callout="example" class="callout is-collapsible"><div class="callout-title"><div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line><style>
+:root {
+  --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+  --font-monospace: 'Source Code Pro', monospace;
+  --background-primary: #ffffff;
+  --background-modifier-border: #ddd;
+  --text-accent: #705dcf;
+  --text-accent-hover: #7a6ae6;
+  --text-normal: #2e3338;
+  --background-secondary: #f2f3f5;
+  --background-secondary-alt: #e3e5e8;
+  --text-muted: #888888;
+}</style>"<marker id="mermaid_arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker>"</svg></div><div class="callout-title-inner">Example: Calculate <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span></div><div class="callout-fold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"></path><style>
+:root {
+  --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+  --font-monospace: 'Source Code Pro', monospace;
+  --background-primary: #ffffff;
+  --background-modifier-border: #ddd;
+  --text-accent: #705dcf;
+  --text-accent-hover: #7a6ae6;
+  --text-normal: #2e3338;
+  --background-secondary: #f2f3f5;
+  --background-secondary-alt: #e3e5e8;
+  --text-muted: #888888;
+}</style>"<marker id="mermaid_arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker>"</svg></div></div><div class="callout-content">
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mrow space="4"><mjx-mo class="mjx-n"><mjx-stretchy-v class="mjx-c5B" style="height: 3.8em; vertical-align: -1.65em;"><mjx-beg><mjx-c></mjx-c></mjx-beg><mjx-ext><mjx-c></mjx-c></mjx-ext><mjx-end><mjx-c></mjx-c></mjx-end><mjx-mark></mjx-mark></mjx-stretchy-v></mjx-mo><mjx-mtable style="min-width: 5.834em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-right: 0.5em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-top: 0.2em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding: 0.2em 0.5em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-top: 0.2em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable><mjx-mo class="mjx-n"><mjx-stretchy-v class="mjx-c5D" style="height: 3.8em; vertical-align: -1.65em;"><mjx-beg><mjx-c></mjx-c></mjx-beg><mjx-ext><mjx-c></mjx-c></mjx-ext><mjx-end><mjx-c></mjx-c></mjx-end><mjx-mark></mjx-mark></mjx-stretchy-v></mjx-mo></mjx-mrow></mjx-math></mjx-container></div>
+<ol>
+<li>Check e.g. <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.055em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span> or reason from <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>.</li>
+<li>
+<div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" class="MJX-TEX" style="margin-left: 0px; margin-right: 0px;"><mjx-mtable style="min-width: 24.098em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="text-align: right; padding-bottom: 0.15em;"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="text-align: right; padding-top: 0.15em; padding-bottom: 0.15em;"><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="text-align: right; padding-top: 0.15em; padding-bottom: 0.15em;"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="text-align: right; padding-top: 0.15em;"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable></mjx-math></mjx-container></div>
+</li>
+<li><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mrow space="4"><mjx-mo class="mjx-n"><mjx-stretchy-v class="mjx-c5B" style="height: 5.2em; vertical-align: -2.35em;"><mjx-beg><mjx-c></mjx-c></mjx-beg><mjx-ext><mjx-c></mjx-c></mjx-ext><mjx-end><mjx-c></mjx-c></mjx-end><mjx-mark></mjx-mark></mjx-stretchy-v></mjx-mo><mjx-mtable style="min-width: 8.168em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-bottom: 0.2em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-right: 0.5em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-top: 0.2em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding: 0.2em 0.5em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-top: 0.2em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-top: 0.2em; padding-bottom: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding: 0.2em 0.5em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-top: 0.2em; padding-bottom: 0.2em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr><mjx-mtr><mjx-mtd style="padding-right: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd><mjx-mtd style="padding-left: 0.5em; padding-top: 0.2em;"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable><mjx-mo class="mjx-n"><mjx-stretchy-v class="mjx-c5D" style="height: 5.2em; vertical-align: -2.35em;"><mjx-beg><mjx-c></mjx-c></mjx-beg><mjx-ext><mjx-c></mjx-c></mjx-ext><mjx-end><mjx-c></mjx-c></mjx-end><mjx-mark></mjx-mark></mjx-stretchy-v></mjx-mo></mjx-mrow><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mrow space="4"><mjx-mo class="mjx-n"><mjx-c class="mjx-c5B"></mjx-c></mjx-mo><mjx-mtable style="min-width: 3.334em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable><mjx-mo class="mjx-n"><mjx-c class="mjx-c5D"></mjx-c></mjx-mo></mjx-mrow></mjx-math></mjx-container></span></li>
+<li>Solve using Julia<br>
+Answer: <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mrow space="4"><mjx-mo class="mjx-n"><mjx-c class="mjx-c5B"></mjx-c></mjx-mo><mjx-mtable style="min-width: 9.223em;"><mjx-table><mjx-itable><mjx-mtr><mjx-mtd><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c38"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c36"></mjx-c><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-tstrut></mjx-tstrut></mjx-mtd></mjx-mtr></mjx-itable></mjx-table></mjx-mtable><mjx-mo class="mjx-n"><mjx-c class="mjx-c5D"></mjx-c></mjx-mo></mjx-mrow></mjx-math></mjx-container></span>.</li>
+<li>One of the equations in <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> is redudant and can be left out.</li>
+</ol>
+<div data-callout-metadata="" data-callout-fold="-" data-callout="example" class="callout is-collapsible is-collapsed"><div class="callout-title"><div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line><style>
+:root {
+  --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+  --font-monospace: 'Source Code Pro', monospace;
+  --background-primary: #ffffff;
+  --background-modifier-border: #ddd;
+  --text-accent: #705dcf;
+  --text-accent-hover: #7a6ae6;
+  --text-normal: #2e3338;
+  --background-secondary: #f2f3f5;
+  --background-secondary-alt: #e3e5e8;
+  --text-muted: #888888;
+}</style>"<marker id="mermaid_arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker>"</svg></div><div class="callout-title-inner">Julia code:</div><div class="callout-fold is-collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"></path><style>
+:root {
+  --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+  --font-monospace: 'Source Code Pro', monospace;
+  --background-primary: #ffffff;
+  --background-modifier-border: #ddd;
+  --text-accent: #705dcf;
+  --text-accent-hover: #7a6ae6;
+  --text-normal: #2e3338;
+  --background-secondary: #f2f3f5;
+  --background-secondary-alt: #e3e5e8;
+  --text-muted: #888888;
+}</style>"<marker id="mermaid_arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker>"</svg></div></div><div class="callout-content" style="display: none;">
+<pre class="language-julia" tabindex="0"><code class="language-julia is-loaded">P <span class="token operator">=</span><span class="token punctuation">[</span>
+<span class="token number">0.4</span> <span class="token number">0.1</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+<span class="token number">0</span> <span class="token number">0.3</span> <span class="token number">0.7</span><span class="token punctuation">;</span>
+<span class="token number">0.4</span> <span class="token number">0</span> <span class="token number">0.6</span><span class="token punctuation">]</span>
+<span class="token comment"># Check that steady state probabilities exist. E.g. see that all entries of P are 0 for e.g. P2</span>
+P<span class="token operator">^</span><span class="token number">2</span>
+A <span class="token operator">=</span><span class="token punctuation">[</span>
+<span class="token operator">-</span><span class="token number">0.6</span> <span class="token number">0</span> <span class="token number">0.4</span><span class="token punctuation">;</span>
+<span class="token number">0.1</span> <span class="token operator">-</span><span class="token number">0.7</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token number">0.5</span> <span class="token number">0.7</span> <span class="token operator">-</span><span class="token number">0.4</span><span class="token punctuation">;</span>
+<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token punctuation">]</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token constant">pi</span> <span class="token operator">=</span> A<span class="token operator">\</span>b
+<span class="token comment"># answer: 0.37837837837837834</span>
+<span class="token comment"># 0.054054054054054126</span>
+<span class="token comment"># 0.5675675675675674</span>
+<span class="token comment"># You can always check your answer by computing A*pi, and check that it equals b:</span>
+A<span class="token operator">*</span><span class="token constant">pi</span>
+<span class="token comment"># You can see below that when you solve the system of equatins with</span>
+<span class="token comment"># one less equation, you still get the same answer.</span>
+A <span class="token operator">=</span><span class="token punctuation">[</span>
+<span class="token operator">-</span><span class="token number">0.6</span> <span class="token number">0</span> <span class="token number">0.4</span><span class="token punctuation">;</span>
+<span class="token number">0.1</span> <span class="token operator">-</span><span class="token number">0.7</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token punctuation">]</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token constant">pi</span> <span class="token operator">=</span> A<span class="token operator">\</span>b
+<span class="token comment"># You can always check your answer by computing A*pi, and check that it equals b:</span>
+A<span class="token operator">*</span><span class="token constant">pi</span>
+</code><button class="copy-code-button">Copy</button></pre>
+</div></div>
+</div></div>
+    </body>
+</html>

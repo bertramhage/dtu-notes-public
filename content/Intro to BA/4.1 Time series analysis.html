@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>4.1 Time series analysis</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h2 id="components-of-a-time-series">Components of a time-series</h2>
+<ul>
+<li><strong>Trend</strong>: A long-term upwards or downward movement in
+the data, indication a general increase or decrease over time</li>
+<li><strong>Seasonality</strong>: A repeating pattern in the data that
+occurs at regular intervals, such as daily, weekly, monthly, or
+yearly.</li>
+<li><strong>Cyclical</strong>: A pattern in the data that repeats itself
+after a specific number of observations (unspecified time interval),
+which is not necessarily related to seasonality</li>
+<li><strong>Irregular fluctuations</strong>: Random fluctuations in the
+data that cannot easily be explained by trend, seasonality, or
+cycle.</li>
+</ul>
+<p>![[Pasted image 20251020090859.png|400]]</p>
+<h2 id="time-series-decomposition">Time-series decomposition</h2>
+<p><strong>Additive decomposition</strong> When variation is
+<em>constant</em> <span
+class="math display"><em>y</em><sub><em>t</em></sub> = <em>S</em><sub><em>t</em></sub> + <em>T</em><sub><em>t</em></sub> + <em>R</em><sub><em>t</em></sub></span>
+<strong>Multiplicative decomposition</strong> When variation <em>changes
+with time</em> <span
+class="math display"><em>y</em><sub><em>t</em></sub> = <em>S</em><sub><em>t</em></sub> × <em>T</em><sub><em>t</em></sub> × <em>R</em><sub><em>t</em></sub></span>
+![[Pasted image 20251020091319.png|400]] ## Stationarity A stationary
+time series is one whose statistical properties are constant over time -
+<strong>Strong stationarity</strong>: Joint probability distribution of
+a sub-sequence of variables does not change over time; i.e., joint
+distribution of <span
+class="math inline"><em>y</em><sub><em>t</em></sub>, <em>y</em><sub><em>t</em> + 1</sub>, …, <em>y</em><sub><em>t</em> + <em>n</em></sub></span>
+is exactly the same as the joint distribution of <span
+class="math inline"><em>y</em><sub><em>t</em> + <em>k</em></sub>, <em>y</em><sub><em>t</em> + <em>k</em> + 1</sub>, …, <em>y</em><sub><em>t</em> + <em>k</em> + <em>n</em></sub></span>.
+- <strong>Weak stationarity</strong>: Same mean and variance at all time
+points, and the covariance between variables at any two time points
+<span class="math inline"><em>t</em></span> and <span
+class="math inline"><em>t</em> − <em>k</em></span> (autocovariance)
+depends only on <span class="math inline"><em>k</em></span> and not the
+location of points in time</p>
+<p>![[Pasted image 20251020091740.png|450]]</p>
+<h3 id="checking-for-stationarity">Checking for stationarity</h3>
+<ul>
+<li>Visualize (plot)</li>
+<li>Compare distributions in different time windows of dataset</li>
+<li>Augmented Dickey-Fuller (ADF) test</li>
+<li>Autocorrelation function (ACF)</li>
+</ul>
+<h3 id="handling-non-stationarity">Handling non-stationarity</h3>
+<p><strong>Trend adjustment</strong>: Eliminate the trend</p>
+<ol type="1">
+<li>Fit a regression model describing the trend component and then
+subtract it out of the original observations <span
+class="math display"><em>E</em>(<em>y</em><sub><em>t</em></sub>) = <em>β</em><sub>0</sub> + <em>β</em><sub>1</sub><em>t</em></span>
+<span
+class="math display"><em>x</em><sub><em>t</em></sub> = <em>y</em><sub><em>t</em></sub> − <em>E</em>(<em>y</em><sub><em>t</em></sub>)</span></li>
+<li>Differencing: simpler and does not assume a fixed trend throughout
+the time series <span
+class="math display"><em>x</em><sub><em>t</em></sub> = <em>y</em><sub><em>t</em></sub> − <em>y</em><sub><em>t</em> − 1</sub></span></li>
+<li>Transformations to stabilize variance (eg log. power
+transformations)</li>
+</ol>
+<p><strong>Seasonality</strong> 1. Seasonal adjustment: In the simple
+additive decomposition model, adjust each observation by how much the
+season mean tends to be below or above the global (stationary) mean
+<span
+class="math inline"><em>y</em><sub><em>t</em></sub> − <em>S</em><sub><em>t</em></sub></span>
+2. Seasonal differencing: If <span class="math inline"><em>m</em></span>
+is the seasonality, <span
+class="math inline"><em>y</em><sub><em>t</em></sub> − <em>y</em><sub><em>t</em> − <em>m</em></sub></span>
+is the seasonally differenced data</p>
+<h2 id="autocorrelation">Autocorrelation</h2>
+<p>Generally, <em>autocorrelation</em> is the correlation of a signal
+<span class="math inline"><em>y</em><sub><em>t</em></sub></span> with a
+lagged copy of itself <span
+class="math inline"><em>y</em><sub><em>t</em> − <em>L</em></sub></span>.</p>
+<blockquote>
+<p>[!info]- Partial correlation Recall correlation between two random
+variables <span class="math inline"><em>X</em></span> and <span
+class="math inline"><em>Y</em></span> <span class="math display">$$
+Corr(X,Y)=\rho_{XY}=\frac{COV(X,Y)}{\sigma_X\sigma_Y}
+$$</span></p>
+<p>For three random variables <span
+class="math inline"><em>X</em>, <em>Y</em>, <em>Z</em></span> consider
+simple linear regressions <span
+class="math display"><em>X̂</em> = <em>a</em><sub>1</sub> + <em>b</em><sub>1</sub><em>Z</em>,  <em>Ŷ</em> = <em>a</em><sub>2</sub> + <em>b</em><sub>2</sub><em>Z</em></span>
+and errors <span
+class="math display"><em>X</em><sup>*</sup> = <em>X</em> − <em>X̂</em>,  <em>Y</em><sup>*</sup> = <em>Y</em> − <em>Ŷ</em></span>
+<em>Partial correlation</em> between <span
+class="math inline"><em>X</em></span> and <span
+class="math inline"><em>Y</em></span> after adjusting for <span
+class="math inline"><em>Z</em></span> is defined as the correlation
+between <span class="math inline"><em>X</em><sup>*</sup></span> and
+<span class="math inline"><em>Y</em><sup>*</sup></span>, <span
+class="math inline"><em>ρ</em><sub><em>X</em><sup>*</sup><em>Y</em><sup>*</sup></sub></span></p>
+</blockquote>
+<p>Partial autocorrelation where the effect of intermediate lags is
+removed. Thus, partial autocorrelation with lag <span
+class="math inline"><em>L</em> = <em>h</em></span> is given by: <span
+class="math display"><em>p</em><em>a</em><em>c</em><em>f</em>(<em>L</em> = <em>h</em>) = <em>C</em><em>o</em><em>r</em><em>r</em>(<em>y</em><sub><em>t</em> + <em>h</em></sub> − <em>ŷ</em><sub><em>t</em> + <em>h</em></sub>, <em>y</em><sub><em>t</em></sub> − <em>ŷ</em><sub><em>t</em></sub>)</span></p>
+</body>
+</html>

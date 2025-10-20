@@ -1,0 +1,563 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Sætninger},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Sætninger}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection{Differentialligninger}\label{differentialligninger}
+
+\paragraph{Form:}\label{form}
+
+\subparagraph{Homogen}\label{homogen}
+
+hvor {}.
+
+\subparagraph{Inhomogen}\label{inhomogen}
+
+hvor {} og {} er en kontinuert funktion med reelle el. komplekse
+værdier.
+
+\paragraph{Løsninger:}\label{luxf8sninger}
+
+Karakteristiske polynomium
+
+1.14 Lin. uaf. løsninger udfra {}
+
+Lad {} være en rod i karakterligningen med am = {}. Da har den homogene
+differentialligning de lineært uafhængige løsninger
+
+1.8 Reelle løsninger
+
+Hvis {} er løsning til (H) er også {} og {} løsninger.\\
+Dsv, givet {}, {}
+
+1.20 Struktursætningen
+
+Den fuldstændige løsning til en inhomogent differentialligning er
+
+hvor {} er en partikulær løsning til den inhomogene differentialligning,
+og {} er den fuldstændige løsning til den tilsvarende homogene
+differentialligning.
+
+\#\#\#\# Overføringsfunktionen:
+
+Overføringsfunktionen (del er fra 1.25)
+
+For en inhomogen diff ligning:
+
+Hvis {} er den stationære løsning
+
+hvis og kun hvis {}.
+
+Hvis {} er {} løsning til den tilsvarende homogene ligning og gættet
+fejler. Gæt i stedet på {}.
+
+\subsection{Systemer af
+differentialligninger}\label{systemer-af-differentialligninger}
+
+\paragraph{Form:}\label{form-1}
+
+\subparagraph{Matrixform:}\label{matrixform}
+
+\paragraph{Løsninger:}\label{luxf8sninger-1}
+
+2.7 Egenværdimetoden (når am=1)
+
+Et sæt relle løsninger til den homogene ligning {} bestemmes på flg.
+måde\\
+(a) For hver reel egenværdi, med tilhørende reel og egentlig egenvektor
+{} opskrives løsningen
+
+(b) Komplekse egenværdier optræder i par {}. Vælg en egentlig egenvektor
+{} hørende til egenværdien {} og opskriv løsningerne
+
+og
+
+2.11 Løsninger ved multiplicitet {} (når am\textgreater1)
+
+(a) For hver egenværdi {} med am {} findes vektorer {} så:
+
+{}{}
+
+(b) Antag, at {} er et par komplekst konjugerede egenværdier med am {}
+og gm {}. Lad {}. Da findes vektorer {} således at
+
+er lineært uafhængige reelle løsninger til systemet {}.
+
+2.12 Fuldstændige reelle løsning efter 2.7 og 2.11
+
+Den fuldstændige reelle løsning til det homogene
+differentialligningssystem {} kan bestemmes på flg. måde:
+
+\begin{enumerate}
+\tightlist
+\item
+  For hver reel egenværdi {} opskrives løsningerne i 2.7(a)/2.11(a).
+\item
+  For hvert par {} af komplekst konjugerede egenværdier opskrives
+  løsningerne i sætning 2.7(b)/2.11(b).
+\end{enumerate}
+
+Den fuldstændige reelle løsning til differentialligningssystemet fås ved
+at danne linearkombinationer af de fundne {} løsninger, med reelle
+koefficienter.
+
+\paragraph{Fundamentalmatricen}\label{fundamentalmatricen}
+
+2.14 Fundamentalmatricen
+
+Til ethvert sæt af {} lin. uaf. løsninger {} til det hom. system {}
+knyttes en {} fundamentalmatrix:
+
+Søjlerne i {} består altså af vektorerne {}.
+
+\paragraph{Overføringsfunktioner}\label{overfuxf8ringsfunktioner}
+
+Overføringsfunktion for et system af diff. lign.
+
+Betragt systemet\\
+{}\strut \\
+{}\strut \\
+Da er
+
+hvor
+
+\paragraph{Stabilitet}\label{stabilitet}
+
+2.28 {} Stabilitet (marginal stabilitet)
+
+Det homogene system {} siges at være stabilt, hvis enhver løsning {} er
+begrænset.\\
+Dvs. at der findes en konstant {} så {}
+
+2.38 Asymptotisk stabilitet
+
+Det homogene system {} siges at være asymptotisk stabilit hvis og kun
+hvis alle egenværdier for {} har negativ realdel.
+
+2.41 Routh-Hurwitz kriterium
+
+Givet et polynomium med reelle koefficienter, på formen
+
+har alle rødder negativ realdel hvis og kun hvis de flg to kriterier er
+opfyldt:
+
+\begin{enumerate}
+\tightlist
+\item
+  Alle koefficienterne er positive, dvs {} for {}.
+\item
+  Alle {} determinanter, {}, på formen
+
+  er positive, dvs {}.
+\end{enumerate}
+
+\paragraph{Stabilitet for inhomogene
+systemer}\label{stabilitet-for-inhomogene-systemer}
+
+2.47 Asymptotisk stabilitet for inhomogene systemer
+
+Et inhomogent system {} er asymptotisk stabilt hvis og kun hvis det
+tilsvarende homogene system er asymptotisk stabilt.
+
+2.48+2.49 BIBO-stabilitet
+
+Det inhomogene system {} siges at være BIBO-stabilt hvis løsningerne {}
+hørende til enhver begrænset påvirkning {} er begrænsede.\\
+Det inhomogene system er BIBO-stabilt hvis og kun hvis det tilhørende
+homogene system er asymptotisk stabilt.
+
+\subsection{Talfølger}\label{talfuxf8lger}
+
+\paragraph{Form:}\label{form-2}
+
+\paragraph{Konvergens}\label{konvergens}
+
+4.5 Konvergens for talfølger
+
+En talfølge {} siges at være konvergent hvis der findes et tal {}
+således at
+
+Ellers er den divergent.
+
+4.10 Regler for konvergens af to talrækker
+
+Hvis {} og {} gælder
+
+\begin{enumerate}
+\item
+\item
+\item
+  Hvis {} er {} for et vist trin og
+\item
+  Hvis {} og {} er {}
+\end{enumerate}
+
+\subsection{Uendelige rækker}\label{uendelige-ruxe6kker}
+
+\paragraph{Form:}\label{form-3}
+
+Den {}\textquotesingle te afsnitssum {}:
+
+\paragraph{Konvergens generelt}\label{konvergens-generelt}
+
+4.15 Definition på konvergens for uendelige rækker
+
+Hvis talfølgen {} er konvergent med grænseværdien {} for {} siges {} at
+være konvergent med sum {}, {}.
+
+Hvis {} er divergent, er {} divergent og tillægges ingen værdi.
+
+4.17 Konvergens for to uendelige rækker
+
+Hvis {} og {} er konvergente er {} konvergent med sum {}.
+
+\paragraph{Konvergenskriterier}\label{konvergenskriterier}
+
+4.19 {}\textquotesingle te ledskriteriet
+
+Hvis {} er konvergent gælder
+
+Dette er ensbetydende med:\\
+Hvis {} ikke går mod {} for {} er {} divergent.
+
+4.20 Sammenligningskriteriet
+
+For {}:
+
+\begin{enumerate}
+\tightlist
+\item
+  Hvis {} er konvergent er {} også konvergent.
+\item
+  Hvis {} er divergent er {} også divergent.
+\end{enumerate}
+
+4.24 Ækvivalentskriteriet
+
+To rækker {} og {} med positive tal er ækvivalente hvis der findes en
+konstant {} så
+
+I så fald er begge rækker konvergente, eller begge rækker divergente.
+
+4.30 Kvotientkriteriet
+
+Antag {} for alle {} og der findes et {} så {} for {}.
+
+\begin{enumerate}
+\tightlist
+\item
+  Hvis {} er {} absolut konvergent
+\item
+  Hvis {} er {} divergent
+\item
+  Hvis {} kræves yderligere info.
+\end{enumerate}
+
+\paragraph{Absolut og betinget
+konvergens}\label{absolut-og-betinget-konvergens}
+
+4.26+4.27 Definition på absolut konvergens
+
+{} er absolut konvergent hvis {} er konvergent.
+
+Hvis {} er absolut konvergent er rækken konvergent.
+
+4.28 Definition på betinget konvergens
+
+{} er betinget konvergent hvis {} er konvergent og {} er divergent.
+
+\paragraph{Summer}\label{summer}
+
+4.33 Integralkriteriet
+
+Lad {} være kontinuert og aftagende.\\
+Betragt {}
+
+\begin{enumerate}
+\item
+  Hvis {} er konvergent er {} konvergent og
+\item
+  Hvis {} er divergent er {} divergent.
+\end{enumerate}
+
+4.35 {} "Metode 1"
+
+Antag {} er kontinuert og aftagende for {}.\\
+Antag {} er konvergent. Da gælder
+
+Vælg derfor {} således at
+
+4.35 {} "Metode 2", mere præcis
+
+Antag {} er kontinuert og aftagende for {}.\\
+Antag {} er konvergent. Da gælder
+
+Vælg derfor {} således at
+
+4.38 Leibniz\textquotesingle{} kriterium
+
+Antag {} (positive og aftagende) og {} for {}.\\
+Da er {} konvergent og
+
+\subsection{Uendelige rækker med variable
+led}\label{uendelige-ruxe6kker-med-variable-led}
+
+\paragraph{Form:}\label{form-4}
+
+Kvotientrække:
+
+Potensrække:
+
+\paragraph{Konvergens og summer}\label{konvergens-og-summer}
+
+5.2 Konvergens og sum for kvotientrække
+
+En kvotientrække {} er konvergent hvis og kun hvis {}.\\
+For {} er summen
+
+For rækken {} er summen
+
+5.13 Konvergensscenarier for potensrække
+
+For en potensrække {} gælder ét af følgende:
+
+\begin{enumerate}
+\tightlist
+\item
+  Rækken er kun konvergent for {}
+\item
+  Rækken er absolut konvergent for alle {}
+\item
+  Der findes et tal {} således at rækken er absolut konvergent for {} og
+  divergent for {}.
+\end{enumerate}
+
+\subparagraph{Funktioner som uendelige
+rækker}\label{funktioner-som-uendelige-ruxe6kker}
+
+5.7 Funktionsfremstilling som uendelig række
+
+Antag at {} er vilkårligt ofte differentiabel, og at der findes en
+konstant {} således at {}.\\
+Lad {}. Så gælder at
+
+5.17 Differention af potensrække
+
+Givet en potensrække {}, med konvergensradius {} definer
+
+Så er funktionen {} differentiabel, og
+
+Generelt
+
+\paragraph{Uniform konvergens}\label{uniform-konvergens}
+
+5.28 Definition af uniform konvergens
+
+Antag at {} er konvergent for {}, og sæt
+
+Den uendelige række {} er uniform konvergent hvis der for ethvert {}
+findes et {} således at
+
+5.31 Definition af majorantrække
+
+Lad funktionerne {} være definerede på et interval {} og betragt den
+formelle række
+
+\begin{enumerate}
+\item
+  En række {} med konstante og positive led {} er en majorantrække for
+  rækken ovenfor på intervallet {}, hvis der for et hvert {} gælder at
+\item
+  En række {} der er konvergent og opfylder ovenstående ulighed siges at
+  være en konvergent majorantrække for {}.
+\end{enumerate}
+
+5.33 Uniform konvergens pba. majorantrække
+
+Antag at funktionerne {} er definerede på et interval {} og at rækken {}
+har en konvergent majorantrække.\\
+Så konvergerer den uendelige række {} uniformt på intervallet {}.
+
+\subsection{Fourierrækker}\label{fourierruxe6kker}
+
+\paragraph{Definitioner}\label{definitioner}
+
+6.1 Fourierrækken
+
+Til en {}-periode funktion {} knyttes en uendelig række, Fourierrækken:
+
+hvor
+
+6.5 Forskydning
+
+Hvis {} er en {}-periodisk funktion er
+
+6.6 Lige og ulige funktioner
+
+Hvis {} er lige er {} og
+
+Hvis {} er ulige er {} og
+
+6.25 Fourierrækken på kompleks form
+
+Ved Fourrierrækken for {} på kompleks form forstås
+
+hvor
+
+Vi har yderligere for {} at
+
+\paragraph{Kontinuitet og
+differentiabilitet}\label{kontinuitet-og-differentiabilitet}
+
+Definition på stykkevis kontinuitet
+
+Lad
+
+Hvis {} er kontinuert i {} er {}.
+
+\textbf{Stykkevis kontinuitet:}\\
+{} ({}-periodisk) er stykkevis kontinuert hvis {} og {} findes for alle
+{} og {} for alle {} pånær et endeligt antal {}.
+
+6.13 Definition på stykkevis differentiabilitet
+
+{} ({}-periodisk) er stykkevis differentiabel hvis den er stykkevis
+kontinuert og der for ethvert {} findes to tal {} så
+
+\paragraph{Fouriers sætning}\label{fouriers-suxe6tning}
+
+6.16 Fouriers sætning
+
+\begin{enumerate}
+\item
+  Hvis {} er en {}-periodisk stykkevis differentiabel funktion
+  konvergerer Fourierrækken for alle {}.
+\item
+  Hvis {} er kontinuert i {} gælder
+\item
+  Hvis {} er diskontinuert i {} gælder
+
+  æ
+\end{enumerate}
+
+\paragraph{Approximation via
+fourierrækken}\label{approximation-via-fourierruxe6kken}
+
+6.12 Konvergens for Fourierrækken
+
+Hvis {} er stykkevis differentiabel, {}-periodisk og kontinuert, så
+konvergerer fourierrækken mod {}.
+
+6.21 Approximation via Fourierrækken
+
+Antag at funktionen {} er {}-periodisk, kontinuert og stykkevis
+differentiabel, med Fourierkoefficienter {}. Så gælder for ethvert {} at
+
+Vælg derfor {} således at
+
+\subsection{Fourierrækkemetoden}\label{fourierruxe6kkemetoden}
+
+\paragraph{System:}\label{system}
+
+Vi betragter differentialligningssystemet {}:
+
+med overføringsfunktionen
+
+hvor {}. Hvis {} er {} en partikulær løsning til {}, (stationær
+løsning).
+
+Lad ydermere {} være asymptotisk stabilt, dvs. for alle løsninger {} til
+{} gælder {} for {} (ensbetydende med at alle egenværdier for {} har
+negativ realdel).
+
+\paragraph{Fourierrækkemetoden}\label{fourierruxe6kkemetoden-1}
+
+7.7 Stationær løsning
+
+Betragt systemet {}.\\
+For enhver påvirkning på formen
+
+fås løsningen
+
+7.8 Fourierrækkemetoden
+
+Betragt systemet {}.\\
+Hvis {} er {}-periodisk, stykkevis differentiabel og kontinuert med {}
+er det stationære svar
+
+\paragraph{Parsevals sætning}\label{parsevals-suxe6tning}
+
+6.30 Parsevals sætning
+
+Hvis {} og
+
+gælder
+
+Metode: Relativ tolerence
+
+Givet en relativ tolerence {}, {} bestem {}, så
+
+\subsection{Potensrækkemetoden}\label{potensruxe6kkemetoden}
+
+5.21 Identitetssætningen for potensrækker
+
+Hvis koefficienterne {} for et passende {} opfylder at
+
+så er {} for alle {}.
+
+\end{document}
