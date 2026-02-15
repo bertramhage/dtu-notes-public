@@ -77,11 +77,11 @@ hvor $a_{0}\neq 0, a_{0}, \dots, a_n\in\mathbb{R},$ og $u$ er en kontinuert funk
 #### Form:
 
 $$
-\begin{align}
+\begin{aligned}
 \dot{x}_1 = a_{11}x_{1} + a_{12}x_{2} + \dots + a_{1n}x_n+u_1(t) \\
 \dots \\
 \dot{x}_n = a_{n1}x_{1}+a_{n2}x_{2}+ \dots + a_{nn}x_n+u_n(t) 
-\end{align}
+\end{aligned}
 $$
 
 ##### Matrixform:
@@ -139,17 +139,17 @@ $$
 > [!info] 2.11 Løsninger ved multiplicitet $\rho$ (når am>1)
 > (a) For hver egenværdi $\lambda$ med am $= \rho$ findes vektorer $\mathbf{b}_{jk}\in \mathbb{R} ^n$ så:
 > $$
-> \begin{align}
+> \begin{aligned}
 >\mathbf{x}_1(t) &= \mathbf{b}_{11} e^{\lambda t} \\
 >\mathbf{x}_2(t) &= \mathbf{b}_{21}e^{\lambda t} + \mathbf{b}_{22}te^{\lambda t} \\
 >\dots \\
 >\mathbf{x}_p(t) &= \mathbf{b}_{p1}e^{\lambda t} + \mathbf{b}_{p2}te^{\lambda t} + \dots + \mathbf{b}_{pp}t^{p-1}e^{\lambda t}
-\end{align}
+\end{aligned}
 >  $$
 > 
 > (b) Antag, at $a\pm i\omega$ er et par komplekst konjugerede egenværdier med am $p≥2$ og gm $q<p$. Lad $\lambda:=a\pm i\omega$. Da findes vektorer $\mathbf{b}_{jk}\in\mathbb{C}$ således at 
 > $$
-> \begin{align}
+> \begin{aligned}
 > \mathbf{x_1}(t)&=Re(\mathbf{b_{11}}e^{\lambda t}) \\
 > \mathbf{x_{2}}(t) &= Re(\mathbf{b}_{21}e^{\lambda t}+\mathbf{b}_{22}te^{\lambda t}) \\
 > \cdot  \\
@@ -160,7 +160,7 @@ $$
 > \cdot  \\
 > \cdot  \\
 > \mathbf{x_{2p}}(t)&=Im(\mathbf{b}_{p1}e^{\lambda t}+\mathbf{b}_{p_{2}}te^{\lambda t}+\dots+\mathbf{b}_{pp}t^{p-1}e^{\lambda t})
-> \end{align}
+> \end{aligned}
 > $$
 > er lineært uafhængige reelle løsninger til systemet $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}$.
 

@@ -28,12 +28,12 @@ $U/L$ = unemployment rate
 
 >[!info] Equilibrium unemployment rate
 >$$
->\begin{align}
+>\begin{aligned}
 >f \times U &= s \times E \\
 >&= s \times (L-U) \\
 >&= s \times L - s \times U \implies \\
 > \frac{U}{L}&=\frac{s}{s+f}
->\end{align}
+>\end{aligned}
 >$$
 >Policy: reduce $s$ or increase $f$.
 

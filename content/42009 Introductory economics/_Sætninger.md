@@ -6,10 +6,10 @@
 >$$
 >the reactions functions are
 >$$
->\begin{align}
+>\begin{aligned}
 > Q_{1}&=r_{1}(Q_{2})= \frac{a-c_{1}}{2b}- \frac{1}{2}Q_{2} \\
 > Q_{2}&=r_{2}(Q_{1})= \frac{a-c_{2}}{2b}- \frac{1}{2}Q_{1}.
->\end{align}
+>\end{aligned}
 >$$
 
 >[!info] Stackelberg equilibrium output formulae

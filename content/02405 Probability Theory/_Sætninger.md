@@ -27,10 +27,10 @@
 >[!info] Bayes' regel
 >For to begivenheder $A$ og $B$ er
 >$$
->\begin{align}
+>\begin{aligned}
 >P(A|B)&=\frac{P(B|A)P(A)}{P(B)}&\Leftrightarrow  \\
 >P(A|B)&=\frac{P(B|A)P(A)}{P(A)P(B|A)+P(A^c)P(B|A^c)}
-\end{align}
+\end{aligned}
 >$$
 
 >[!info] Inklusion/ekslusion
@@ -41,10 +41,10 @@
 >$\implies$
 >For $A=A_1\cup A_{2}\cup\dots \cup A_n$ er
 >$$
->\begin{align}
+>\begin{aligned}
 >P(A) =& P(A_{1})+P(A_{2})+\dots+P(A_n) \\
 >&-P(A_{1}\cap A_{2})-P(A_{1}\cap A_{3})-\dots-P(A_{n-1}\cap A_n)
->\end{align}
+>\end{aligned}
 >$$
 
 ## Kapitel 2: Gentagne forsøg
@@ -223,10 +223,10 @@
 >$$
 >Vi bestemmer da den simultane fordeling ved
 >$$
->\begin{align}
+>\begin{aligned}
 >F_{XY}(x,y)&=P(X≤x)-P(X≤x, Y>y) \\
 >&=P(Y≤y)-P(Y≤y, X>x).
-\end{align}
+\end{aligned}
 >$$
 
 >[!info] Marginalfordeling
@@ -296,10 +296,10 @@
 >$$
 >og
 >$$
->\begin{align}
+>\begin{aligned}
 >\mathrm{P}\left(X_{(1)} \leq x\right)&=1-\mathrm{P}\left(X_1>x\right) \mathrm{P}\left(X_2>x\right) \cdots \mathrm{P}\left(X_n>x\right) \\
 >&=1-(1-F(x))^n
-\end{align}
+\end{aligned}
 >$$
 ## Kapitel 6: Afhængighed
 

@@ -18,10 +18,10 @@ The relationship between each firm’s profit-maximizing output level.
 >$$
 >the reactions functions are
 >$$
->\begin{align}
+>\begin{aligned}
 > Q_{1}&=r_{1}(Q_{2})= \frac{a-c_{1}}{2b}- \frac{1}{2}Q_{2} \\
 > Q_{2}&=r_{2}(Q_{1})= \frac{a-c_{2}}{2b}- \frac{1}{2}Q_{1}.
->\end{align}
+>\end{aligned}
 >$$
 
 ![[Skærmbillede 2023-12-16 kl. 17.18.35.png]]
@@ -103,27 +103,27 @@ The relationship between each firm’s profit-maximizing output level.
 >**Cournot:**
 >The Cournot reaction functions are
 >$$
->\begin{align}
+>\begin{aligned}
 >Q_1 &= 498-\frac{1}{2} \\
 >Q_2 &=498-\frac{1}{2}
->\end{align}
+>\end{aligned}
 >$$
 >Equilibrium output:
 >$$
->\begin{align}
+>\begin{aligned}
 >Q_1=Q_2&=332 \\
 >P&=$336 \\
 >\pi_1=\pi_2&=$110,224
-\end{align}
+\end{aligned}
 >$$
 >
 >**Stackelberg:**
 >The Stackelberg leader's output is
 >$$
->\begin{align}
+>\begin{aligned}
 >Q_{leader} &=\frac{1,000+4-2\cdot 4}{2\cdot 1}=498 \\
 >Q_{follower}&=498-\frac{1}{2}\cdot 498=249
-\end{align}
+\end{aligned}
 >$$
 >The market price is: $P=1,000-498-249=\$253$
 >$\pi_{leader}=\$124,002$
