@@ -78,7 +78,7 @@ The relationship between each firm’s profit-maximizing output level.
 >$$
 >The market price is
 >$$
->P = 50-(24+12)=$14.
+>P = 50-(24+12)=14.
 >$$
 
 ## Bertrand Oligopoly
@@ -112,8 +112,8 @@ The relationship between each firm’s profit-maximizing output level.
 >$$
 >\begin{aligned}
 >Q_1=Q_2&=332 \\
->P&=$336 \\
->\pi_1=\pi_2&=$110,224
+>P&=\$336 \\
+>\pi_1=\pi_2&=\$110,224
 \end{aligned}
 >$$
 >
@@ -133,7 +133,7 @@ The relationship between each firm’s profit-maximizing output level.
 >Since $P=MC$, $P=\$4$.
 >Total output is found by
 >$$
->$4=1,000-Q\implies Q=996.
+>\$4=1,000-Q\implies Q=996.
 >$$
 >Given symmetric firms, each firm gets half the market, or 498 units.
 >$\pi_1=\pi_2=\$0$.
